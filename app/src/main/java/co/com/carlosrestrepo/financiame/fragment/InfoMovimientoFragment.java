@@ -114,8 +114,7 @@ public class InfoMovimientoFragment extends Fragment {
                             movimientoEdit.setValor(Integer.parseInt(valor.getText().toString()));
                             movimientoEdit.setDescripcion(descripcion.getText().toString());
                             movimientoEdit.setDeudor(
-                                    deudorList.get(
-                                            deudor.getSelectedItemPosition()));
+                                    deudorList.get(deudor.getSelectedItemPosition()));
                             movimientoDAO.update(movimientoEdit);
                         } else {
                             movimientoEdit = new Movimiento();
@@ -125,9 +124,10 @@ public class InfoMovimientoFragment extends Fragment {
                             movimientoEdit.setFecha(sdf.parse(fecha.getText().toString()));
                             movimientoEdit.setValor(Integer.parseInt(valor.getText().toString()));
                             movimientoEdit.setDescripcion(descripcion.getText().toString());
-                            movimientoEdit.setDeudor(
-                                    deudorList.get(
-                                            deudor.getSelectedItemPosition() - 1));
+                            if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
+                                movimientoEdit.setDeudor(
+                                        deudorList.get(deudor.getSelectedItemPosition() - 1));
+                            }
                             movimientoDAO.insert(movimientoEdit);
                         }
                         if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
@@ -168,6 +168,7 @@ public class InfoMovimientoFragment extends Fragment {
 
             ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getContext(),
                     android.R.layout.simple_spinner_item, valores);
+            listAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
             tipoMovimiento.setAdapter(listAdapter);
 
             tipoMovimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -212,6 +213,7 @@ public class InfoMovimientoFragment extends Fragment {
 
             ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getContext(),
                     android.R.layout.simple_spinner_item, valores);
+            listAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
             deudor.setAdapter(listAdapter);
         } catch (Exception e) {
             mostrarMensaje(e.getMessage());
