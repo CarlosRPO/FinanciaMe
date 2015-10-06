@@ -12,8 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.ScrimInsetsFrameLayout;
+import co.com.carlosrestrepo.financiame.fragment.adapter.MenuAdapter;
+import co.com.carlosrestrepo.financiame.fragment.adapter.util.AdapterConfiguration;
+import co.com.carlosrestrepo.financiame.model.OpcionMenu;
 
 /**
  *
@@ -45,16 +50,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
 
+        final List<OpcionMenu> opcionesMenu = AdapterConfiguration.MENU_OPTIONS;
+        MenuAdapter menuAdapter = new MenuAdapter(getApplicationContext(), opcionesMenu);
+
         //Menu del Navigation Drawer (ListView)
         ndList = (ListView) findViewById(R.id.navdrawerlist);
-
-        final String[] opciones = getResources().getStringArray(R.array.menu_options);
-
-        ArrayAdapter<String> ndMenuAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_activated_1, opciones);
-
-        ndList.setAdapter(ndMenuAdapter);
-
+        ndList.setAdapter(menuAdapter);
         ndList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ndList.setItemChecked(pos, true);
 
-                getSupportActionBar().setTitle(opciones[pos]);
+                getSupportActionBar().setTitle(opcionesMenu.get(pos).getTitulo());
 
                 drawerLayout.closeDrawer(sifl);
             }

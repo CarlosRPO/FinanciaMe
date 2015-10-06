@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="menu_options">
+    <!--integer-array name="menu_options">
         <item>@string/optionMovimientos</item>
         <item>@string/optionPrestamos</item>
         <item>@string/optionDeudores</item>
         <item>@string/optionTipoMovimiento</item>
-    </integer-array>
+    </integer-array-->
 </resources>

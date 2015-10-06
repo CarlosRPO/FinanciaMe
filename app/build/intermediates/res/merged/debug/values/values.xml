@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/array.xml -->
-    <eat-comment/>
-    <integer-array name="menu_options">
-        <item>@string/optionMovimientos</item>
-        <item>@string/optionPrestamos</item>
-        <item>@string/optionDeudores</item>
-        <item>@string/optionTipoMovimiento</item>
-    </integer-array>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -36,6 +28,11 @@
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="black">#000</color>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -212,7 +209,13 @@
     <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
-    <dimen name="listview_margin">10dp</dimen>
+    <dimen name="listview_margin">12dp</dimen>
+    <dimen name="menu_option_icon_margin_bottom">10dp</dimen>
+    <dimen name="menu_option_icon_margin_left">10dp</dimen>
+    <dimen name="menu_option_icon_margin_top">10dp</dimen>
+    <dimen name="menu_option_title_margin_bottom">10dp</dimen>
+    <dimen name="menu_option_title_margin_left">18dp</dimen>
+    <dimen name="menu_option_title_margin_top">15dp</dimen>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="notification_large_icon_height">64dp</dimen>
@@ -300,9 +303,9 @@
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
     </style>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>

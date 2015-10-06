@@ -9,5 +9,13 @@
     <dimen name="fab_size_small">40dp</dimen>
     <dimen name="fab_icon_size">24dp</dimen>
 
-    <dimen name="listview_margin">10dp</dimen>
+    <dimen name="listview_margin">12dp</dimen>
+
+    <dimen name="menu_option_title_margin_left">18dp</dimen>
+    <dimen name="menu_option_title_margin_top">15dp</dimen>
+    <dimen name="menu_option_title_margin_bottom">10dp</dimen>
+
+    <dimen name="menu_option_icon_margin_left">10dp</dimen>
+    <dimen name="menu_option_icon_margin_top">10dp</dimen>
+    <dimen name="menu_option_icon_margin_bottom">10dp</dimen>
 </resources>
