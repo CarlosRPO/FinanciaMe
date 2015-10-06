@@ -1,0 +1,44 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.com.carlosrestrepo.financiame.fragment.InfoDeudorFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <!-- NOMBRE -->
+        <EditText
+            android:id="@+id/nombreDeudor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="@string/nombreTitle"
+            android:textSize="18sp" />
+
+        <!-- TELÉFONO -->
+        <EditText
+            android:id="@+id/telefonoDeudor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="@string/telefonoTitle"
+            android:textSize="18sp" />
+
+        <!-- TOTAL DEUDAS -->
+        <TextView
+            android:id="@+id/totalDeudas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6sp"
+            android:layout_marginTop="6sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</FrameLayout>
