@@ -85,8 +85,8 @@
     <color name="materialcolorpicker__white">#ffffff</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="primary">#304FFE</color>
-    <color name="primary_dark">#2962FF</color>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#3949AB</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">@android:color/black</color>
@@ -221,7 +221,8 @@
     <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
-    <dimen name="listview_margin">12dp</dimen>
+    <dimen name="listview_margin">9dp</dimen>
+    <dimen name="listview_margin_2">12dp</dimen>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <dimen name="materialcolorpicker__activity_horizontal_margin">16dp</dimen>

@@ -362,10 +362,10 @@ public final class R {
 		public static final int disabled_alpha_material_dark = 0x7f080048;
 		public static final int disabled_alpha_material_light = 0x7f080049;
 		public static final int materialcolorpicker__activity_horizontal_margin = 0x7f080015;
-		public static final int materialcolorpicker__activity_vertical_margin = 0x7f08004e;
-		public static final int notification_large_icon_height = 0x7f080055;
-		public static final int notification_large_icon_width = 0x7f080056;
-		public static final int notification_subtext_size = 0x7f080057;
+		public static final int materialcolorpicker__activity_vertical_margin = 0x7f08004f;
+		public static final int notification_large_icon_height = 0x7f080056;
+		public static final int notification_large_icon_width = 0x7f080057;
+		public static final int notification_subtext_size = 0x7f080058;
 	}
 	public static final class drawable {
 		public static final int abc_ab_share_pack_mtrl_alpha = 0x7f020000;

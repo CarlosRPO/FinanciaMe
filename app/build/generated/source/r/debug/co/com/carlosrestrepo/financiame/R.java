@@ -1529,17 +1529,18 @@ containing a value of this type.
         public static final int highlight_alpha_material_dark=0x7f08004b;
         public static final int highlight_alpha_material_light=0x7f08004c;
         public static final int listview_margin=0x7f08004d;
+        public static final int listview_margin_2=0x7f08004e;
         public static final int materialcolorpicker__activity_horizontal_margin=0x7f080015;
-        public static final int materialcolorpicker__activity_vertical_margin=0x7f08004e;
-        public static final int menu_option_icon_margin_bottom=0x7f08004f;
-        public static final int menu_option_icon_margin_left=0x7f080050;
-        public static final int menu_option_icon_margin_top=0x7f080051;
-        public static final int menu_option_title_margin_bottom=0x7f080052;
-        public static final int menu_option_title_margin_left=0x7f080053;
-        public static final int menu_option_title_margin_top=0x7f080054;
-        public static final int notification_large_icon_height=0x7f080055;
-        public static final int notification_large_icon_width=0x7f080056;
-        public static final int notification_subtext_size=0x7f080057;
+        public static final int materialcolorpicker__activity_vertical_margin=0x7f08004f;
+        public static final int menu_option_icon_margin_bottom=0x7f080050;
+        public static final int menu_option_icon_margin_left=0x7f080051;
+        public static final int menu_option_icon_margin_top=0x7f080052;
+        public static final int menu_option_title_margin_bottom=0x7f080053;
+        public static final int menu_option_title_margin_left=0x7f080054;
+        public static final int menu_option_title_margin_top=0x7f080055;
+        public static final int notification_large_icon_height=0x7f080056;
+        public static final int notification_large_icon_width=0x7f080057;
+        public static final int notification_subtext_size=0x7f080058;
     }
     public static final class drawable {
         public static final int abc_ab_share_pack_mtrl_alpha=0x7f020000;
