@@ -19,14 +19,28 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
-        <!-- FECHA -->
-        <EditText
-            android:id="@+id/fechaMovimiento"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="@string/dateFormat"
-            android:textSize="18sp"/>
+            android:layout_height="wrap_content">
+
+            <!-- FECHA -->
+            <EditText
+                android:id="@+id/fechaMovimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="@string/dateFormat"
+                android:textSize="18sp"
+                android:enabled="false"/>
+
+            <ImageButton android:id="@+id/btnFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_action_event"
+                android:layout_gravity="center_vertical|center_horizontal"/>
+
+        </LinearLayout>
 
         <!-- VALOR -->
         <EditText

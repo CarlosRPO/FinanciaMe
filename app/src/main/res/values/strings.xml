@@ -25,6 +25,7 @@
     <string name="descripcionTitle">Descripción</string>
     <string name="requiereDeudorTitle">Requiere Deudor</string>
     <string name="totalDeudas">Total deudas:</string>
+    <string name="color">Color:</string>
 
     <string name="tipoMovimientoEmpty">No se encontraron Tipos de Movimiento</string>
     <string name="deudorEmpty">No se encontraron Deudores</string>

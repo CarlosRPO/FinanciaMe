@@ -29,5 +29,27 @@
             android:text="@string/requiereDeudorTitle"
             android:textSize="18sp" />
 
+        <!-- COLOR -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lblColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:paddingLeft="7sp"
+                android:paddingTop="5sp"
+                android:paddingRight="12sp" />
+
+            <ImageView
+                android:id="@+id/imgColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout><!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/layout/fragment_info_tipo_movimiento.xml -->

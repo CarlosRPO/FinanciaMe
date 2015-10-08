@@ -17,6 +17,8 @@ application
 ADDED from D:\PROYECTOS\PROPIOS\FinanciaMe\app\src\main\AndroidManifest.xml:5:5-19:19
 MERGED from [com.android.support:appcompat-v7:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from D:\PROYECTOS\PROPIOS\FinanciaMe\app\src\main\AndroidManifest.xml:8:9-41
 	android:allowBackup
@@ -43,6 +45,9 @@ ADDED from D:\PROYECTOS\PROPIOS\FinanciaMe\app\src\main\AndroidManifest.xml:16:1
 		ADDED from D:\PROYECTOS\PROPIOS\FinanciaMe\app\src\main\AndroidManifest.xml:16:27-74
 uses-sdk
 INJECTED from D:\PROYECTOS\PROPIOS\FinanciaMe\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
+MERGED from [com.pes.materialcolorpicker:library:1.0.2] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.pes.materialcolorpicker\library\1.0.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.0.1] D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion

@@ -1,16 +1,24 @@
 package co.com.carlosrestrepo.financiame.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.model.TipoMovimiento;
@@ -25,8 +33,16 @@ public class InfoTipoMovimientoFragment extends Fragment {
 
     private EditText nombre;
     private CheckBox requiereDeudor;
+    private TextView lblColor;
+    private ImageView imgColor;
 
     private TipoMovimiento tipoMovimientoEdit;
+
+    private int defaultColorR = 0;
+    private int defaultColorG = 100;
+    private int defaultColorB = 255;
+
+    private int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +54,38 @@ public class InfoTipoMovimientoFragment extends Fragment {
 
         nombre = (EditText) view.findViewById(R.id.nombreTipoMovimiento);
         requiereDeudor = (CheckBox) view.findViewById(R.id.requiereDeudor);
+        lblColor = (TextView) view.findViewById(R.id.lblColor);
+        imgColor = (ImageView) view.findViewById(R.id.imgColor);
+
+        SpannableString content = new SpannableString(getString(R.string.color));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), SpannableString.SPAN_PRIORITY);
+        lblColor.setText(content);
+
+        lblColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ColorPicker cp = new ColorPicker(getActivity(), defaultColorR, defaultColorG, defaultColorB);
+                cp.show();
+
+                Button btnColor = (Button) cp.findViewById(R.id.okColorButton);
+                btnColor.setText("Parchadito");
+                btnColor.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /* You can get single channel (value 0-255) */
+                        selectedColorR = cp.getRed();
+                        selectedColorG = cp.getGreen();
+                        selectedColorB = cp.getBlue();
+
+                        /* Or the android RGB Color (see the android Color class reference) */
+                        selectedColorRGB = cp.getColor();
+                        imgColor.setBackgroundColor(selectedColorRGB);
+
+                        cp.dismiss();
+                    }
+                });
+            }
+        });
 
         Bundle bundle = getArguments();
         if (bundle != null) {

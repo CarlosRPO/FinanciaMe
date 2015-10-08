@@ -1,6 +1,7 @@
 package co.com.carlosrestrepo.financiame.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,13 +32,14 @@ import co.com.carlosrestrepo.financiame.persistence.dao.TipoMovimientoDAO;
  * @author  Carlos Restrepo
  * @created Septiembre 15 de 2015
  */
-public class InfoMovimientoFragment extends Fragment {
+public class InfoMovimientoFragment extends Fragment implements DatePickerFragment.SelectDateDialogListener {
 
     private Spinner tipoMovimiento;
     private EditText fecha;
     private EditText valor;
     private EditText descripcion;
     private Spinner deudor;
+    private ImageButton btnFecha;
 
     private Movimiento movimientoEdit;
 
@@ -63,6 +66,15 @@ public class InfoMovimientoFragment extends Fragment {
         valor = (EditText) view.findViewById(R.id.valorMovimiento);
         descripcion = (EditText) view.findViewById(R.id.descripcionMovimiento);
         deudor = (Spinner) view.findViewById(R.id.deudorMovimiento);
+
+        btnFecha = (ImageButton) view.findViewById(R.id.btnFecha);
+        btnFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialog = new DatePickerFragment();
+                dialog.show(getFragmentManager(), "fecha");
+            }
+        });
 
         llenarTipoMovimiento();
         llenarDeudor();
@@ -267,5 +279,10 @@ public class InfoMovimientoFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new MovimientoFragment())
                 .commit();
+    }
+
+    @Override
+    public void onFinishSelectDateDialog(String date) {
+        fecha.setText(date);
     }
 }

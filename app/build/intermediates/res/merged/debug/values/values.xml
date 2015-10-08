@@ -71,6 +71,18 @@
     <color name="material_grey_800">#ff424242</color>
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <color name="materialcolorpicker__black">#000000</color>
+    <color name="materialcolorpicker__blue">#2196f3</color>
+    <color name="materialcolorpicker__dialogcolor">#009688</color>
+    <color name="materialcolorpicker__dribble">#ea4c89</color>
+    <color name="materialcolorpicker__dribbledark">#c32361</color>
+    <color name="materialcolorpicker__green">#4caf50</color>
+    <color name="materialcolorpicker__grey">#b3b3b3</color>
+    <color name="materialcolorpicker__lightgrey">#d9d9d9</color>
+    <color name="materialcolorpicker__red">#f44336</color>
+    <color name="materialcolorpicker__white">#ffffff</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="primary">#304FFE</color>
@@ -210,6 +222,12 @@
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="listview_margin">12dp</dimen>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="materialcolorpicker__activity_horizontal_margin">16dp</dimen>
+    <dimen name="materialcolorpicker__activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
     <dimen name="menu_option_icon_margin_bottom">10dp</dimen>
     <dimen name="menu_option_icon_margin_left">10dp</dimen>
     <dimen name="menu_option_icon_margin_top">10dp</dimen>
@@ -257,6 +275,7 @@
     <eat-comment/>
     <string name="app_name">FinanciaMe</string>
     <string name="closeDrawer">Menu cerrado</string>
+    <string name="color">Color:</string>
     <string name="dateFormat">dd/mm/aaaa</string>
     <string name="descripcionRequerida">Debe ingresar una descripción</string>
     <string name="descripcionTitle">Descripción</string>
@@ -270,6 +289,15 @@
     <string name="infoDeudorTitle">Información Deudor</string>
     <string name="infoMovimientoTitle">Información Movimiento</string>
     <string name="infoTipoMovimiento">Debe ingresar el nombre del Tipo de Movimiento</string>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <string name="materialcolorpicker__app_name">Android Material Color Picker Dialog</string>
+    <string name="materialcolorpicker__btnSelectColor">Select</string>
+    <string name="materialcolorpicker__descLib">Material Color Picker Dialog</string>
+    <string name="materialcolorpicker__errHex">Hex Code Format incorrect</string>
+    <string name="materialcolorpicker__inputColor">Color: </string>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="movimientoEmpty">No se encontraron Movimientos</string>
     <string name="newDeudorTitle">Nuevo Deudor</string>
     <string name="newMovimientoTitle">Nuevo Movimiento</string>
@@ -1547,4 +1575,9 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <style name="materialcolorpicker__AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
 </resources>
