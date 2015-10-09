@@ -48,7 +48,7 @@ public class PersistenceConfiguration {
         {
             add("create table if not exists tbl_tipo_movimiento ("
                     + "id integer primary key autoincrement, nombre text not null, "
-                    + "requiere_deudor integer not null default 0);");
+                    + "requiere_deudor integer not null default 0, color text not null);");
             add("create table if not exists tbl_deudor (id integer primary key autoincrement, "
                     + "nombre text not null, telefono text not null, total_deudas integer not null default 0);");
             add("create table if not exists tbl_movimiento (id integer primary key autoincrement, "

@@ -85,8 +85,8 @@
     <color name="materialcolorpicker__white">#ffffff</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#3949AB</color>
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1E88E5</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">@android:color/black</color>
@@ -274,6 +274,7 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="aceptar">Aceptar</string>
     <string name="app_name">FinanciaMe</string>
     <string name="closeDrawer">Menu cerrado</string>
     <string name="color">Color:</string>

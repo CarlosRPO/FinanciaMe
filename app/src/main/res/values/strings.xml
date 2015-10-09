@@ -43,4 +43,6 @@
     <string name="descripcionRequerida">Debe ingresar una descripción</string>
     <string name="deudorRequerido">Debe seleccionar un Deudor</string>
 
+    <string name="aceptar">Aceptar</string>
+
 </resources>

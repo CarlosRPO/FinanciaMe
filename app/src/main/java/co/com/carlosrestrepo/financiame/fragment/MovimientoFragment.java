@@ -18,6 +18,7 @@ import co.com.carlosrestrepo.financiame.fragment.adapter.MovimientoAdapter;
 import co.com.carlosrestrepo.financiame.fragment.widget.FloatingActionButton;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
 import co.com.carlosrestrepo.financiame.persistence.dao.MovimientoDAO;
+import co.com.carlosrestrepo.financiame.persistence.dao.TipoMovimientoDAO;
 import co.com.carlosrestrepo.financiame.persistence.exception.FinanciaMeException;
 
 /**
@@ -60,9 +61,15 @@ public class MovimientoFragment extends Fragment implements AdapterView.OnItemCl
 
     private void cargarMovimientos(View view) {
         MovimientoDAO movimientoDAO = new MovimientoDAO(getContext());
+        TipoMovimientoDAO tmDAO = new TipoMovimientoDAO(getContext());
         try {
             movimientoList = movimientoDAO.getAll();
-            if (movimientoList == null) movimientoList = new ArrayList<Movimiento>();
+
+            if (movimientoList != null && !movimientoList.isEmpty()) {
+                for (Movimiento movimiento : movimientoList) {
+                    movimiento.setTipoMovimiento(tmDAO.findById(movimiento.getTipoMovimiento().getId()));
+                }
+            } else if (movimientoList == null) movimientoList = new ArrayList<Movimiento>();
 
             MovimientoAdapter adapter = new MovimientoAdapter(getContext(),
                     movimientoList);

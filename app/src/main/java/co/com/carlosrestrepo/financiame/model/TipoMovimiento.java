@@ -34,6 +34,11 @@ public class TipoMovimiento implements Serializable {
     private boolean deudor;
 
     /**
+     * Indica el color que identifica el tipo de movimiento
+     */
+    private String color;
+
+    /**
      * Método que se encarga de obtener el id del tipo de movimiento
      * @return id
      */
@@ -79,5 +84,21 @@ public class TipoMovimiento implements Serializable {
      */
     public void setDeudor(boolean deudor) {
         this.deudor = deudor;
+    }
+
+    /**
+     * Método que se encarga de obtener el color del tipo de movimiento
+     * @return color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * Método que se encarga de asignar un color al tipo de movimiento
+     * @param color
+     */
+    public void setColor(String color) {
+        this.color = color;
     }
 }

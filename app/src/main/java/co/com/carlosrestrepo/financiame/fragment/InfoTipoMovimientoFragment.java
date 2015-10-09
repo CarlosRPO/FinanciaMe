@@ -58,7 +58,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
         imgColor = (ImageView) view.findViewById(R.id.imgColor);
 
         SpannableString content = new SpannableString(getString(R.string.color));
-        content.setSpan(new UnderlineSpan(), 0, content.length(), SpannableString.SPAN_PRIORITY);
+        content.setSpan(new UnderlineSpan(), 0, content.length(), SpannableString.SPAN_USER_SHIFT);
         lblColor.setText(content);
 
         lblColor.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
                 cp.show();
 
                 Button btnColor = (Button) cp.findViewById(R.id.okColorButton);
-                btnColor.setText("Parchadito");
+                btnColor.setText(getString(R.string.aceptar));
                 btnColor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -120,11 +120,19 @@ public class InfoTipoMovimientoFragment extends Fragment {
                         if (tipoMovimientoEdit != null) {
                             tipoMovimientoEdit.setNombre(nombre.getText().toString());
                             tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
+                            tipoMovimientoEdit.setColor(
+                                    selectedColorRGB > 0 ?
+                                            String.valueOf(selectedColorRGB) :
+                                            String.valueOf(Color.TRANSPARENT));
                             tmDAO.update(tipoMovimientoEdit);
                         } else {
                             tipoMovimientoEdit = new TipoMovimiento();
                             tipoMovimientoEdit.setNombre(nombre.getText().toString());
                             tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
+                            tipoMovimientoEdit.setColor(
+                                    selectedColorRGB != 0 ?
+                                            String.valueOf(selectedColorRGB) :
+                                            String.valueOf(Color.TRANSPARENT));
                             tmDAO.insert(tipoMovimientoEdit);
                         }
                     } catch (Exception e) {
