@@ -1,10 +1,12 @@
 package co.com.carlosrestrepo.financiame.fragment.adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,11 +38,13 @@ public class TipoMovimientoAdapter extends ArrayAdapter<TipoMovimiento> {
         LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.row_tipo_movimiento, parent, false);
 
+        ImageView icon = (ImageView) row.findViewById(R.id.imgIcono);
+        icon.getDrawable().setColorFilter(
+                Integer.parseInt(tipoMovimiento.getColor()),
+                PorterDuff.Mode.MULTIPLY);
+
         TextView nombre = (TextView) row.findViewById(R.id.lblNombre);
         nombre.setText(tipoMovimiento.getNombre());
-
-//        TextView requiereDeudor = (TextView) row.findViewById(R.id.lblRequiereDeudor);
-//        requiereDeudor.setText(tipoMovimiento.hasDeudor() ? context.getString(R.string.requiereDeudorTitle) : "");
 
         return row;
     }

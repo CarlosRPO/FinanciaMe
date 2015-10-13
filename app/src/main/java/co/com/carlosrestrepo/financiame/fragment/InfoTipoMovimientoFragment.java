@@ -93,6 +93,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
             tipoMovimientoEdit.setId(bundle.getLong("id"));
             tipoMovimientoEdit.setNombre(bundle.getString("nombre"));
             tipoMovimientoEdit.setDeudor(bundle.getBoolean("requiere_deudor"));
+            tipoMovimientoEdit.setColor(bundle.getString("color"));
             cargarTipoMovimiento();
         }
         return view;
@@ -121,7 +122,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
                             tipoMovimientoEdit.setNombre(nombre.getText().toString());
                             tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
                             tipoMovimientoEdit.setColor(
-                                    selectedColorRGB > 0 ?
+                                    selectedColorRGB != 0 ?
                                             String.valueOf(selectedColorRGB) :
                                             String.valueOf(Color.TRANSPARENT));
                             tmDAO.update(tipoMovimientoEdit);
@@ -149,6 +150,9 @@ public class InfoTipoMovimientoFragment extends Fragment {
     private void cargarTipoMovimiento() {
         nombre.setText(tipoMovimientoEdit.getNombre());
         requiereDeudor.setChecked(tipoMovimientoEdit.hasDeudor());
+        int color = Integer.parseInt(tipoMovimientoEdit.getColor());
+        imgColor.setBackgroundColor(color);
+        selectedColorRGB = color;
     }
 
     private boolean validarInfo() {

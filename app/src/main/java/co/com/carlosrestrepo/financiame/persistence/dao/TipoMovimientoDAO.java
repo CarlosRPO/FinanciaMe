@@ -92,7 +92,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             openToRead();
 
             List<TipoMovimiento> tipoMovimientoList = null;
-            String[] campos = new String[]{ "id", "nombre", "requiere_deudor" };
+            String[] campos = new String[]{ "id", "nombre", "requiere_deudor", "color" };
 
             Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
                     campos, null, null, null, null, null);
@@ -105,6 +105,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
                     tipoMovimiento.setId(cursor.getLong(0));
                     tipoMovimiento.setNombre(cursor.getString(1));
                     tipoMovimiento.setDeudor(cursor.getInt(2) == 1 ? true : false);
+                    tipoMovimiento.setColor(cursor.getString(3));
                     tipoMovimientoList.add(tipoMovimiento);
                 } while(cursor.moveToNext());
             }

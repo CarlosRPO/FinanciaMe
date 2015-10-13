@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<co.com.carlosrestrepo.financiame.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<co.com.carlosrestrepo.financiame.fragment.customcontrol.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrimInsetsFrameLayout"
@@ -35,4 +35,4 @@
 
     </LinearLayout>
 
-</co.com.carlosrestrepo.financiame.ScrimInsetsFrameLayout>
+</co.com.carlosrestrepo.financiame.fragment.customcontrol.ScrimInsetsFrameLayout>

@@ -5,28 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <!--ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_chevron_right"
-        android:layout_marginLeft="@dimen/listview_margin"
-        android:layout_marginTop="@dimen/listview_margin"
-        android:layout_marginBottom="@dimen/listview_margin"
-        android:layout_gravity="center_vertical|center_horizontal"/-->
-
     <ImageView
         android:id="@+id/imgIcono"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:background="@drawable/materialcolorpicker__green_thumb_drawable"/>
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/img"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="@dimen/listview_margin">
+        android:layout_marginTop="@dimen/listview_margin"
+        android:layout_marginBottom="@dimen/listview_margin">
 
         <TextView android:id="@+id/lblDescripcion"
             android:layout_width="match_parent"

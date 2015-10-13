@@ -222,7 +222,6 @@
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="listview_margin">9dp</dimen>
-    <dimen name="listview_margin_2">12dp</dimen>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <dimen name="materialcolorpicker__activity_horizontal_margin">16dp</dimen>

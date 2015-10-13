@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import co.com.carlosrestrepo.financiame.R;
+import co.com.carlosrestrepo.financiame.fragment.customcontrol.NumberTextWatcher;
 import co.com.carlosrestrepo.financiame.model.Deudor;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
 import co.com.carlosrestrepo.financiame.model.TipoMovimiento;
@@ -63,9 +64,11 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
 
         tipoMovimiento = (Spinner) view.findViewById(R.id.tipoMovimiento);
         fecha = (EditText) view.findViewById(R.id.fechaMovimiento);
-        valor = (EditText) view.findViewById(R.id.valorMovimiento);
         descripcion = (EditText) view.findViewById(R.id.descripcionMovimiento);
         deudor = (Spinner) view.findViewById(R.id.deudorMovimiento);
+
+        valor = (EditText) view.findViewById(R.id.valorMovimiento);
+        valor.addTextChangedListener(new NumberTextWatcher(valor));
 
         btnFecha = (ImageButton) view.findViewById(R.id.btnFecha);
         btnFecha.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +126,9 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
                                     tipoMovimientoList.get(
                                             tipoMovimiento.getSelectedItemPosition()));
                             movimientoEdit.setFecha(sdf.parse(fecha.getText().toString()));
-                            movimientoEdit.setValor(Integer.parseInt(valor.getText().toString()));
+                            movimientoEdit.setValor(
+                                    Integer.parseInt(
+                                            valor.getText().toString().replace(".", "")));
                             movimientoEdit.setDescripcion(descripcion.getText().toString());
                             movimientoEdit.setDeudor(
                                     deudorList.get(deudor.getSelectedItemPosition()));
@@ -134,7 +139,9 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
                                     tipoMovimientoList.get(
                                             tipoMovimiento.getSelectedItemPosition() - 1));
                             movimientoEdit.setFecha(sdf.parse(fecha.getText().toString()));
-                            movimientoEdit.setValor(Integer.parseInt(valor.getText().toString()));
+                            movimientoEdit.setValor(
+                                    Integer.parseInt(
+                                            valor.getText().toString().replace(".", "")));
                             movimientoEdit.setDescripcion(descripcion.getText().toString());
                             if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
                                 movimientoEdit.setDeudor(
