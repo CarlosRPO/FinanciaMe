@@ -29,6 +29,11 @@ public class TipoMovimiento implements Serializable {
     private String nombre;
 
     /**
+     * Indica si el tipo de movimiento requiere asociar un medio de pago
+     */
+    private boolean medioPago;
+
+    /**
      * Indica si el tipo de movimiento requiere asociar un deudor
      */
     private boolean deudor;
@@ -37,6 +42,11 @@ public class TipoMovimiento implements Serializable {
      * Indica el color que identifica el tipo de movimiento
      */
     private String color;
+
+    /**
+     * Indica la acción que debe realizar el tipo de movimiento (Sumar o Restar)
+     */
+    private String accion;
 
     /**
      * Método que se encarga de obtener el id del tipo de movimiento
@@ -71,6 +81,22 @@ public class TipoMovimiento implements Serializable {
     }
 
     /**
+     * Método que se encarga de verificar si el tipo de movimiento requiere un medio de pago
+     * @return medioPago
+     */
+    public boolean hasMedioPago() {
+        return medioPago;
+    }
+
+    /**
+     * Método que se encarga de indicar si el tipo de movimiento requeriere o no un medio de pago
+     * @param medioPago
+     */
+    public void setMedioPago(boolean medioPago) {
+        this.medioPago = medioPago;
+    }
+
+    /**
      * Método que se encarga de verificar si el tipo de movimiento requiere un deudor
      * @return deudor
      */
@@ -100,5 +126,28 @@ public class TipoMovimiento implements Serializable {
      */
     public void setColor(String color) {
         this.color = color;
+    }
+
+    /**
+     * Método que se encarga de obtener la acción del tipo de movimiento
+     * @return accion
+     */
+    public String getAccion() {
+        return accion;
+    }
+
+    /**
+     * Método que se encarga de asignar una acción al tipo de movimiento
+     * @param accion
+     */
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        TipoMovimiento tipoMovimiento = (TipoMovimiento) o;
+        if (this.id == tipoMovimiento.getId()) return true;
+        return false;
     }
 }

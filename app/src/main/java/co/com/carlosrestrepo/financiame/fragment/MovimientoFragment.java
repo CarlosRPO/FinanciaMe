@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,7 @@ import co.com.carlosrestrepo.financiame.model.Movimiento;
 import co.com.carlosrestrepo.financiame.persistence.dao.MovimientoDAO;
 import co.com.carlosrestrepo.financiame.persistence.dao.TipoMovimientoDAO;
 import co.com.carlosrestrepo.financiame.persistence.exception.FinanciaMeException;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  *
@@ -30,8 +30,6 @@ public class MovimientoFragment extends Fragment implements AdapterView.OnItemCl
         FloatingActionButton.OnCheckedChangeListener {
 
     private List<Movimiento> movimientoList;
-
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,11 +91,13 @@ public class MovimientoFragment extends Fragment implements AdapterView.OnItemCl
             Bundle bundle = new Bundle();
             bundle.putLong("id", movimiento.getId());
             bundle.putLong("id_tipo_movimiento", movimiento.getTipoMovimiento().getId());
-            bundle.putString("fecha", sdf.format(movimiento.getFecha()));
+            bundle.putString("fecha", FinanciaMeConfiguration.sdf.format(movimiento.getFecha()));
             bundle.putInt("valor", movimiento.getValor().intValue());
             bundle.putString("descripcion", movimiento.getDescripcion());
             if (movimiento.getDeudor() != null)
                 bundle.putLong("id_deudor", movimiento.getDeudor().getId());
+            if (movimiento.getMedioPago() != null)
+                bundle.putLong("id_medio_pago", movimiento.getMedioPago().getId());
 
             InfoMovimientoFragment fragment = new InfoMovimientoFragment();
             fragment.setArguments(bundle);

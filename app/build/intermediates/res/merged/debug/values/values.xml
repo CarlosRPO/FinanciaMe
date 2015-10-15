@@ -85,8 +85,8 @@
     <color name="materialcolorpicker__white">#ffffff</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1E88E5</color>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#1565C0</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">@android:color/black</color>
@@ -222,6 +222,7 @@
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="listview_margin">9dp</dimen>
+    <dimen name="listview_margin_2">12dp</dimen>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <dimen name="materialcolorpicker__activity_horizontal_margin">16dp</dimen>
@@ -288,8 +289,12 @@
     <string name="infoDeudorNombre">Debe ingresar el nombre del Deudor</string>
     <string name="infoDeudorTelefono">Debe ingresar el teléfono del Deudor</string>
     <string name="infoDeudorTitle">Información Deudor</string>
+    <string name="infoMedioPago">Debe ingresar el nombre del Medio de Pago</string>
     <string name="infoMovimientoTitle">Información Movimiento</string>
-    <string name="infoTipoMovimiento">Debe ingresar el nombre del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoAccion">Debe seleccionar la acción del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoNombre">Debe ingresar el nombre del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoTelefono">Para llamar al deudor debe ingresar su número de teléfono</string>
+    <string name="interesTitle">Interés</string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.pes.materialcolorpicker/library/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <string name="materialcolorpicker__app_name">Android Material Color Picker Dialog</string>
@@ -299,18 +304,22 @@
     <string name="materialcolorpicker__inputColor">Color: </string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="medioPagoEmpty">No se encontraron Medios de Pago</string>
+    <string name="medioPagoRequerido">Debe seleccionar un Medio de Pago</string>
     <string name="movimientoEmpty">No se encontraron Movimientos</string>
     <string name="newDeudorTitle">Nuevo Deudor</string>
     <string name="newMovimientoTitle">Nuevo Movimiento</string>
     <string name="nombreTitle">Nombre</string>
     <string name="openDrawer">Menu abierto</string>
     <string name="optionDeudores">Deudores</string>
+    <string name="optionMedioPago">Medios de Pago</string>
     <string name="optionMovimientos">Movimientos</string>
     <string name="optionPrestamos">Préstamos</string>
     <string name="optionTipoMovimiento">Tipos de Movimiento</string>
     <string name="pazSalvoTitle">Tiene deudas</string>
     <string name="prestamoEmpty">No se encontraron Préstamos</string>
     <string name="requiereDeudorTitle">Requiere Deudor</string>
+    <string name="requiereMedioPagoTitle">Requiere Medio de Pago</string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>
@@ -321,6 +330,7 @@
     <string name="tipoMovimientoRequerido">Debe seleccionar un Tipo de Movimiento</string>
     <string name="totalDeudas">Total deudas:</string>
     <string name="user">Carlos Restrepo</string>
+    <string name="valorDeudaSuperior">El valor ingresado es superior a la deuda (Total deuda: %1$s)</string>
     <string name="valorRequerido">Debe ingresar un valor</string>
     <string name="valorTitle">Valor</string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->

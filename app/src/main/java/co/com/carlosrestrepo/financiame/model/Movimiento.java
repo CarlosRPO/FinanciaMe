@@ -45,6 +45,11 @@ public class Movimiento implements Serializable {
     private String descripcion;
 
     /**
+     * Medio de pago para cuando el movimiento lo requiera
+     */
+    private MedioPago medioPago;
+
+    /**
      * Deudor para cuando el movimiento lo requiera
      */
     private Deudor deudor;
@@ -127,6 +132,22 @@ public class Movimiento implements Serializable {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * Método que se encarga de obtener el medio de pago del movimiento
+     * @return medioPago
+     */
+    public MedioPago getMedioPago() {
+        return medioPago;
+    }
+
+    /**
+     * Método que se encarga de asignar un medio de pago al movimiento
+     * @param medioPago
+     */
+    public void setMedioPago(MedioPago medioPago) {
+        this.medioPago = medioPago;
     }
 
     /**

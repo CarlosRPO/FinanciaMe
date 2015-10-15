@@ -6,10 +6,11 @@
     <string name="openDrawer">Menu abierto</string>
     <string name="closeDrawer">Menu cerrado</string>
 
+    <string name="optionTipoMovimiento">Tipos de Movimiento</string>
+    <string name="optionMedioPago">Medios de Pago</string>
+    <string name="optionDeudores">Deudores</string>
     <string name="optionMovimientos">Movimientos</string>
     <string name="optionPrestamos">Préstamos</string>
-    <string name="optionDeudores">Deudores</string>
-    <string name="optionTipoMovimiento">Tipos de Movimiento</string>
 
     <string name="newMovimientoTitle">Nuevo Movimiento</string>
     <string name="infoMovimientoTitle">Información Movimiento</string>
@@ -23,16 +24,22 @@
     <string name="dateFormat">dd/mm/aaaa</string>
     <string name="valorTitle">Valor</string>
     <string name="descripcionTitle">Descripción</string>
+    <string name="requiereMedioPagoTitle">Requiere Medio de Pago</string>
     <string name="requiereDeudorTitle">Requiere Deudor</string>
+    <string name="interesTitle">Interés</string>
     <string name="totalDeudas">Total deudas:</string>
     <string name="color">Color:</string>
 
     <string name="tipoMovimientoEmpty">No se encontraron Tipos de Movimiento</string>
+    <string name="medioPagoEmpty">No se encontraron Medios de Pago</string>
     <string name="deudorEmpty">No se encontraron Deudores</string>
     <string name="prestamoEmpty">No se encontraron Préstamos</string>
     <string name="movimientoEmpty">No se encontraron Movimientos</string>
 
-    <string name="infoTipoMovimiento">Debe ingresar el nombre del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoNombre">Debe ingresar el nombre del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoAccion">Debe seleccionar la acción del Tipo de Movimiento</string>
+    <string name="infoTipoMovimientoTelefono">Para llamar al deudor debe ingresar su número de teléfono</string>
+    <string name="infoMedioPago">Debe ingresar el nombre del Medio de Pago</string>
     <string name="infoDeudorNombre">Debe ingresar el nombre del Deudor</string>
     <string name="infoDeudorTelefono">Debe ingresar el teléfono del Deudor</string>
     <string name="fechaError">No se pudo recuperar la fecha del Movimiento</string>
@@ -40,8 +47,10 @@
     <string name="tipoMovimientoRequerido">Debe seleccionar un Tipo de Movimiento</string>
     <string name="fechaRequerida">Debe seleccionar una fecha</string>
     <string name="valorRequerido">Debe ingresar un valor</string>
+    <string name="valorDeudaSuperior">El valor ingresado es superior a la deuda (Total deuda: %1$s)</string>
     <string name="descripcionRequerida">Debe ingresar una descripción</string>
     <string name="deudorRequerido">Debe seleccionar un Deudor</string>
+    <string name="medioPagoRequerido">Debe seleccionar un Medio de Pago</string>
 
     <string name="aceptar">Aceptar</string>
 

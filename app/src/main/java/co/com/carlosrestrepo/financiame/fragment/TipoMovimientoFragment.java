@@ -84,7 +84,9 @@ public class TipoMovimientoFragment extends Fragment implements AdapterView.OnIt
             bundle.putLong("id", tipoMovimiento.getId());
             bundle.putString("nombre", tipoMovimiento.getNombre());
             bundle.putBoolean("requiere_deudor", tipoMovimiento.hasDeudor());
+            bundle.putBoolean("requiere_medio_pago", tipoMovimiento.hasMedioPago());
             bundle.putString("color", tipoMovimiento.getColor());
+            bundle.putString("accion", tipoMovimiento.getAccion());
 
             InfoTipoMovimientoFragment fragment = new InfoTipoMovimientoFragment();
             fragment.setArguments(bundle);

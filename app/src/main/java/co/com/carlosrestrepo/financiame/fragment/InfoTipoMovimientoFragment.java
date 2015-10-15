@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +35,10 @@ public class InfoTipoMovimientoFragment extends Fragment {
 
     private EditText nombre;
     private CheckBox requiereDeudor;
+    private CheckBox requiereMedioPago;
     private TextView lblColor;
     private ImageView imgColor;
+    private Spinner accion;
 
     private TipoMovimiento tipoMovimientoEdit;
 
@@ -54,8 +58,10 @@ public class InfoTipoMovimientoFragment extends Fragment {
 
         nombre = (EditText) view.findViewById(R.id.nombreTipoMovimiento);
         requiereDeudor = (CheckBox) view.findViewById(R.id.requiereDeudor);
+        requiereMedioPago = (CheckBox) view.findViewById(R.id.requiereMedioPago);
         lblColor = (TextView) view.findViewById(R.id.lblColor);
         imgColor = (ImageView) view.findViewById(R.id.imgColor);
+        accion = (Spinner) view.findViewById(R.id.accionTipoMovimiento);
 
         SpannableString content = new SpannableString(getString(R.string.color));
         content.setSpan(new UnderlineSpan(), 0, content.length(), SpannableString.SPAN_USER_SHIFT);
@@ -87,13 +93,17 @@ public class InfoTipoMovimientoFragment extends Fragment {
             }
         });
 
+        llenarAccion();
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             tipoMovimientoEdit = new TipoMovimiento();
             tipoMovimientoEdit.setId(bundle.getLong("id"));
             tipoMovimientoEdit.setNombre(bundle.getString("nombre"));
             tipoMovimientoEdit.setDeudor(bundle.getBoolean("requiere_deudor"));
+            tipoMovimientoEdit.setMedioPago(bundle.getBoolean("requiere_medio_pago"));
             tipoMovimientoEdit.setColor(bundle.getString("color"));
+            tipoMovimientoEdit.setAccion(bundle.getString("accion"));
             cargarTipoMovimiento();
         }
         return view;
@@ -115,52 +125,85 @@ public class InfoTipoMovimientoFragment extends Fragment {
                 atras();
                 return true;
             case R.id.action_save:
-                if (validarInfo()) {
-                    TipoMovimientoDAO tmDAO = new TipoMovimientoDAO(getContext());
-                    try {
-                        if (tipoMovimientoEdit != null) {
-                            tipoMovimientoEdit.setNombre(nombre.getText().toString());
-                            tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
-                            tipoMovimientoEdit.setColor(
-                                    selectedColorRGB != 0 ?
-                                            String.valueOf(selectedColorRGB) :
-                                            String.valueOf(Color.TRANSPARENT));
-                            tmDAO.update(tipoMovimientoEdit);
-                        } else {
-                            tipoMovimientoEdit = new TipoMovimiento();
-                            tipoMovimientoEdit.setNombre(nombre.getText().toString());
-                            tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
-                            tipoMovimientoEdit.setColor(
-                                    selectedColorRGB != 0 ?
-                                            String.valueOf(selectedColorRGB) :
-                                            String.valueOf(Color.TRANSPARENT));
-                            tmDAO.insert(tipoMovimientoEdit);
-                        }
-                    } catch (Exception e) {
-                        mostrarMensaje(e.getMessage());
-                    }
-                    mostrarMensaje(getString(R.string.guardadoExitoso));
-                    atras();
-                }
+                guardarTipoMovimiento();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void llenarAccion() {
+        String[] valores = new String[3];
+        valores[0] = "Seleccione una Acción...";
+        valores[1] = "+ Sumar";
+        valores[2] = "- Restar";
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, valores);
+        listAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        accion.setAdapter(listAdapter);
+    }
+
     private void cargarTipoMovimiento() {
         nombre.setText(tipoMovimientoEdit.getNombre());
         requiereDeudor.setChecked(tipoMovimientoEdit.hasDeudor());
+        requiereMedioPago.setChecked(tipoMovimientoEdit.hasMedioPago());
         int color = Integer.parseInt(tipoMovimientoEdit.getColor());
         imgColor.setBackgroundColor(color);
         selectedColorRGB = color;
+        if (tipoMovimientoEdit.getAccion().equals("+")) accion.setSelection(1);
+        else if (tipoMovimientoEdit.getAccion().equals("-")) accion.setSelection(2);
     }
 
     private boolean validarInfo() {
         if (nombre.getText() == null || nombre.getText().toString().isEmpty()) {
-            mostrarMensaje(getString(R.string.infoTipoMovimiento));
+            mostrarMensaje(getString(R.string.infoTipoMovimientoNombre));
+            return false;
+        }
+        if (accion.getSelectedItemPosition() == 0) {
+            mostrarMensaje(getString(R.string.infoTipoMovimientoAccion));
             return false;
         }
         return true;
+    }
+
+    private void guardarTipoMovimiento() {
+        if (validarInfo()) {
+            TipoMovimientoDAO tmDAO = new TipoMovimientoDAO(getContext());
+            try {
+                if (tipoMovimientoEdit != null) {
+                    tipoMovimientoEdit.setNombre(nombre.getText().toString());
+                    tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
+                    tipoMovimientoEdit.setMedioPago(requiereMedioPago.isChecked());
+                    tipoMovimientoEdit.setColor(
+                            selectedColorRGB != 0 ?
+                                    String.valueOf(selectedColorRGB) :
+                                    String.valueOf(Color.TRANSPARENT));
+                    if (accion.getSelectedItemPosition() == 1)
+                        tipoMovimientoEdit.setAccion("+");
+                    else if (accion.getSelectedItemPosition() == 2)
+                        tipoMovimientoEdit.setAccion("-");
+                    tmDAO.update(tipoMovimientoEdit);
+                } else {
+                    tipoMovimientoEdit = new TipoMovimiento();
+                    tipoMovimientoEdit.setNombre(nombre.getText().toString());
+                    tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
+                    tipoMovimientoEdit.setMedioPago(requiereMedioPago.isChecked());
+                    tipoMovimientoEdit.setColor(
+                            selectedColorRGB != 0 ?
+                                    String.valueOf(selectedColorRGB) :
+                                    String.valueOf(Color.TRANSPARENT));
+                    if (accion.getSelectedItemPosition() == 1)
+                        tipoMovimientoEdit.setAccion("+");
+                    else if (accion.getSelectedItemPosition() == 2)
+                        tipoMovimientoEdit.setAccion("-");
+                    tmDAO.insert(tipoMovimientoEdit);
+                }
+            } catch (Exception e) {
+                mostrarMensaje(e.getMessage());
+            }
+            mostrarMensaje(getString(R.string.guardadoExitoso));
+            atras();
+        }
     }
 
     private void mostrarMensaje(String mensaje) {

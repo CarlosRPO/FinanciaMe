@@ -11,6 +11,7 @@ import java.util.List;
 
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.model.Deudor;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  * Clase que se encarga de adaptar y mostrar la lista de Deudores
@@ -43,8 +44,8 @@ public class DeudorAdapter extends ArrayAdapter<Deudor> {
         telefono.setText(deudor.getTelefono());
 
         TextView totalDeudas = (TextView) row.findViewById(R.id.lblTotalDeudas);
-        totalDeudas.setText(context.getString(R.string.totalDeudas) + " " +
-                String.valueOf(deudor.getTotalDeudas().intValue()));
+        totalDeudas.setText(context.getString(R.string.totalDeudas) + " " + "$" +
+                FinanciaMeConfiguration.df.format((long) deudor.getTotalDeudas().intValue()));
 
         return row;
     }

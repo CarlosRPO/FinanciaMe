@@ -104,4 +104,11 @@ public class Deudor implements Serializable {
     public void setTotalDeudas(Integer totalDeudas) {
         this.totalDeudas = totalDeudas;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Deudor deudor = (Deudor) o;
+        if (this.id == deudor.getId()) return true;
+        return false;
+    }
 }

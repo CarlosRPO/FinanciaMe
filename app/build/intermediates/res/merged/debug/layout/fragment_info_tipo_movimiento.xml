@@ -21,6 +21,14 @@
             android:hint="@string/nombreTitle"
             android:textSize="18sp" />
 
+        <!-- REQUIERE MEDIO DE PAGO -->
+        <CheckBox
+            android:id="@+id/requiereMedioPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/requiereMedioPagoTitle"
+            android:textSize="18sp" />
+
         <!-- REQUIERE DEUDOR -->
         <CheckBox
             android:id="@+id/requiereDeudor"
@@ -28,6 +36,15 @@
             android:layout_height="wrap_content"
             android:text="@string/requiereDeudorTitle"
             android:textSize="18sp" />
+
+        <!-- ACCIÓN (SUMAR O RESTAR) -->
+        <Spinner
+            android:id="@+id/accionTipoMovimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
         <!-- COLOR -->
         <LinearLayout

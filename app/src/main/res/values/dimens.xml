@@ -10,6 +10,7 @@
     <dimen name="fab_icon_size">24dp</dimen>
 
     <dimen name="listview_margin">9dp</dimen>
+    <dimen name="listview_margin_2">12dp</dimen>
 
     <dimen name="menu_option_title_margin_left">18dp</dimen>
     <dimen name="menu_option_title_margin_top">15dp</dimen>

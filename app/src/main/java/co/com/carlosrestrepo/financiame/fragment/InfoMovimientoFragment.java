@@ -16,40 +16,47 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.fragment.customcontrol.NumberTextWatcher;
 import co.com.carlosrestrepo.financiame.model.Deudor;
+import co.com.carlosrestrepo.financiame.model.MedioPago;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
 import co.com.carlosrestrepo.financiame.model.TipoMovimiento;
 import co.com.carlosrestrepo.financiame.persistence.dao.DeudorDAO;
+import co.com.carlosrestrepo.financiame.persistence.dao.MedioPagoDAO;
 import co.com.carlosrestrepo.financiame.persistence.dao.MovimientoDAO;
 import co.com.carlosrestrepo.financiame.persistence.dao.TipoMovimientoDAO;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  *
  * @author  Carlos Restrepo
  * @created Septiembre 15 de 2015
  */
-public class InfoMovimientoFragment extends Fragment implements DatePickerFragment.SelectDateDialogListener {
+public class InfoMovimientoFragment extends Fragment implements
+        DatePickerFragment.SelectDateDialogListener {
 
     private Spinner tipoMovimiento;
     private EditText fecha;
     private EditText valor;
     private EditText descripcion;
     private Spinner deudor;
+    private Spinner medioPago;
     private ImageButton btnFecha;
 
     private Movimiento movimientoEdit;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
     private List<TipoMovimiento> tipoMovimientoList;
     private List<Deudor> deudorList;
+    private List<MedioPago> medioPagoList;
     private TipoMovimientoDAO tmDAO;
     private DeudorDAO deudorDAO;
+    private MedioPagoDAO medioPagoDAO;
+
+    private final String ACCION_SUMAR = "+";
+    private final String ACCION_RESTAR = "-";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +65,7 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
 
         tmDAO = new TipoMovimientoDAO(getContext());
         deudorDAO = new DeudorDAO(getContext());
+        medioPagoDAO = new MedioPagoDAO(getContext());
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info_movimiento, container, false);
@@ -65,6 +73,7 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
         tipoMovimiento = (Spinner) view.findViewById(R.id.tipoMovimiento);
         fecha = (EditText) view.findViewById(R.id.fechaMovimiento);
         descripcion = (EditText) view.findViewById(R.id.descripcionMovimiento);
+        medioPago = (Spinner) view.findViewById(R.id.medioPagoMovimiento);
         deudor = (Spinner) view.findViewById(R.id.deudorMovimiento);
 
         valor = (EditText) view.findViewById(R.id.valorMovimiento);
@@ -80,6 +89,7 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
         });
 
         llenarTipoMovimiento();
+        llenarMedioPago();
         llenarDeudor();
 
         Bundle bundle = getArguments();
@@ -89,14 +99,17 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
             movimientoEdit.setTipoMovimiento(
                     new TipoMovimiento(bundle.getLong("id_tipo_movimiento")));
             try {
-                movimientoEdit.setFecha(sdf.parse(bundle.getString("fecha")));
+                movimientoEdit.setFecha(
+                        FinanciaMeConfiguration.sdf.parse(bundle.getString("fecha")));
             } catch (Exception e) {
                 mostrarMensaje(getString(R.string.fechaError));
             }
             movimientoEdit.setValor(Integer.valueOf(bundle.getInt("valor")));
             movimientoEdit.setDescripcion(bundle.getString("descripcion"));
-            if (bundle.containsKey("id_deudor"))
+            if (bundle.containsKey("id_deudor") && bundle.getLong("id_deudor") != 0)
                 movimientoEdit.setDeudor(new Deudor(bundle.getLong("id_deudor")));
+            if (bundle.containsKey("id_medio_pago") && bundle.getLong("id_medio_pago") != 0)
+                movimientoEdit.setMedioPago(new MedioPago(bundle.getLong("id_medio_pago")));
             cargarMovimiento();
         }
         return view;
@@ -118,50 +131,7 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
                 atras();
                 return true;
             case R.id.action_save:
-                if (validarInfo()) {
-                    MovimientoDAO movimientoDAO = new MovimientoDAO(getContext());
-                    try {
-                        if (movimientoEdit != null) {
-                            movimientoEdit.setTipoMovimiento(
-                                    tipoMovimientoList.get(
-                                            tipoMovimiento.getSelectedItemPosition()));
-                            movimientoEdit.setFecha(sdf.parse(fecha.getText().toString()));
-                            movimientoEdit.setValor(
-                                    Integer.parseInt(
-                                            valor.getText().toString().replace(".", "")));
-                            movimientoEdit.setDescripcion(descripcion.getText().toString());
-                            movimientoEdit.setDeudor(
-                                    deudorList.get(deudor.getSelectedItemPosition()));
-                            movimientoDAO.update(movimientoEdit);
-                        } else {
-                            movimientoEdit = new Movimiento();
-                            movimientoEdit.setTipoMovimiento(
-                                    tipoMovimientoList.get(
-                                            tipoMovimiento.getSelectedItemPosition() - 1));
-                            movimientoEdit.setFecha(sdf.parse(fecha.getText().toString()));
-                            movimientoEdit.setValor(
-                                    Integer.parseInt(
-                                            valor.getText().toString().replace(".", "")));
-                            movimientoEdit.setDescripcion(descripcion.getText().toString());
-                            if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
-                                movimientoEdit.setDeudor(
-                                        deudorList.get(deudor.getSelectedItemPosition() - 1));
-                            }
-                            movimientoDAO.insert(movimientoEdit);
-                        }
-                        if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
-                            Deudor deudor = deudorDAO.findById(movimientoEdit.getDeudor().getId());
-                            Integer total_deudas = deudor.getTotalDeudas();
-                            total_deudas += movimientoEdit.getValor();
-                            deudor.setTotalDeudas(total_deudas);
-                            deudorDAO.update(deudor);
-                        }
-                    } catch (Exception e) {
-                        mostrarMensaje(e.getMessage());
-                    }
-                    mostrarMensaje(getString(R.string.guardadoExitoso));
-                    atras();
-                }
+                guardarMovimiento();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -192,12 +162,19 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
 
             tipoMovimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> parent, View view,
+                                           int position, long id) {
                     if (position > 0) {
                         if (tipoMovimientoList.get(position - 1).hasDeudor()) {
                             deudor.setVisibility(View.VISIBLE);
                         } else {
                             deudor.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (tipoMovimientoList.get(position - 1).hasMedioPago()) {
+                            medioPago.setVisibility(View.VISIBLE);
+                        } else {
+                            medioPago.setVisibility(View.INVISIBLE);
                         }
                     }
                 }
@@ -205,6 +182,7 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     deudor.setVisibility(View.INVISIBLE);
+                    medioPago.setVisibility(View.INVISIBLE);
                 }
             });
         } catch (Exception e) {
@@ -239,15 +217,61 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
         }
     }
 
+    private void llenarMedioPago() {
+        try {
+            int size = 1;
+            medioPagoList = medioPagoDAO.getAll();
+            if (medioPagoList != null && !medioPagoList.isEmpty()) {
+                size = medioPagoList.size() + 1;
+            }
+
+            String[] valores = new String[size];
+            valores[0] = "Seleccione un Medio de Pago...";
+
+            if (medioPagoList != null && !medioPagoList.isEmpty()) {
+                for (int i = 0; i < medioPagoList.size(); i++) {
+                    MedioPago medioPago = medioPagoList.get(i);
+                    valores[i+1] = medioPago.getNombre();
+                }
+            }
+
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_spinner_item, valores);
+            listAdapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+            medioPago.setAdapter(listAdapter);
+        } catch (Exception e) {
+            mostrarMensaje(e.getMessage());
+        }
+    }
+
     private void cargarMovimiento() {
-        tipoMovimiento.setSelection(
-                tipoMovimientoList.indexOf(movimientoEdit.getTipoMovimiento()));
-        fecha.setText(sdf.format(movimientoEdit.getFecha()));
-        valor.setText(String.valueOf(movimientoEdit.getValor().intValue()));
-        descripcion.setText(movimientoEdit.getDescripcion());
-        if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
-            deudor.setSelection(deudorList.indexOf(movimientoEdit.getDeudor()));
-            deudor.setVisibility(View.INVISIBLE);
+        try {
+            TipoMovimiento _tipoMovimiento = tmDAO.findById(
+                    movimientoEdit.getTipoMovimiento().getId());
+            tipoMovimiento.setSelection(tipoMovimientoList.indexOf(_tipoMovimiento) + 1);
+            fecha.setText(FinanciaMeConfiguration.sdf.format(movimientoEdit.getFecha()));
+            valor.setText(String.valueOf(movimientoEdit.getValor().intValue()));
+            descripcion.setText(movimientoEdit.getDescripcion());
+            if (movimientoEdit.getDeudor() != null &&
+                    movimientoEdit.getDeudor().getId() != 0) {
+                Deudor _deudor = deudorList.get(deudor.getSelectedItemPosition() - 1);
+                deudor.setSelection(deudorList.indexOf(_deudor) + 1);
+                deudor.setVisibility(View.VISIBLE);
+            } else {
+                deudor.setSelection(0);
+                deudor.setVisibility(View.INVISIBLE);
+            }
+            if (movimientoEdit.getMedioPago() != null &&
+                    movimientoEdit.getMedioPago().getId() != 0) {
+                MedioPago _medioPago = medioPagoDAO.findById(movimientoEdit.getMedioPago().getId());
+                medioPago.setSelection(medioPagoList.indexOf(_medioPago) + 1);
+                medioPago.setVisibility(View.VISIBLE);
+            } else {
+                medioPago.setSelection(0);
+                medioPago.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
+            mostrarMensaje(e.getMessage());
         }
     }
 
@@ -273,7 +297,99 @@ public class InfoMovimientoFragment extends Fragment implements DatePickerFragme
             mostrarMensaje(getString(R.string.deudorRequerido));
             return false;
         }
+        try {
+            if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1).hasDeudor()) {
+                Deudor _deudor = deudorList.get(deudor.getSelectedItemPosition() - 1);
+                Integer total_deudas = _deudor.getTotalDeudas();
+                if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1)
+                        .getAccion().equals(ACCION_SUMAR) &&
+                        Integer.parseInt(
+                                valor.getText().toString().replace(".", "")) > total_deudas) {
+                    mostrarMensaje(String.format(
+                            getString(R.string.valorDeudaSuperior), String.valueOf(total_deudas)));
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            mostrarMensaje(e.getMessage());
+            return false;
+        }
+        if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1).hasMedioPago()
+                && medioPago.getSelectedItemPosition() == 0) {
+            mostrarMensaje(getString(R.string.medioPagoRequerido));
+            return false;
+        }
         return true;
+    }
+
+    private void guardarMovimiento() {
+        if (validarInfo()) {
+            MovimientoDAO movimientoDAO = new MovimientoDAO(getContext());
+            try {
+                if (movimientoEdit != null) {
+                    movimientoEdit.setTipoMovimiento(
+                            tipoMovimientoList.get(
+                                    tipoMovimiento.getSelectedItemPosition() - 1));
+                    movimientoEdit.setFecha(
+                            FinanciaMeConfiguration.sdf.parse(fecha.getText().toString()));
+                    movimientoEdit.setValor(
+                            Integer.parseInt(
+                                    valor.getText().toString().replace(".", "")));
+                    movimientoEdit.setDescripcion(descripcion.getText().toString());
+                    if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
+                        movimientoEdit.setDeudor(
+                                deudorList.get(deudor.getSelectedItemPosition() - 1));
+                    } else {
+                        movimientoEdit.setDeudor(null);
+                    }
+                    if (movimientoEdit.getTipoMovimiento().hasMedioPago()) {
+                        movimientoEdit.setMedioPago(
+                                medioPagoList.get(medioPago.getSelectedItemPosition() - 1));
+                    } else {
+                        movimientoEdit.setMedioPago(null);
+                    }
+                    movimientoDAO.update(movimientoEdit);
+                } else {
+                    movimientoEdit = new Movimiento();
+                    movimientoEdit.setTipoMovimiento(
+                            tipoMovimientoList.get(
+                                    tipoMovimiento.getSelectedItemPosition() - 1));
+                    movimientoEdit.setFecha(
+                            FinanciaMeConfiguration.sdf.parse(fecha.getText().toString()));
+                    movimientoEdit.setValor(
+                            Integer.parseInt(
+                                    valor.getText().toString().replace(".", "")));
+                    movimientoEdit.setDescripcion(descripcion.getText().toString());
+                    if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
+                        movimientoEdit.setDeudor(
+                                deudorList.get(deudor.getSelectedItemPosition() - 1));
+                    }
+                    if (movimientoEdit.getTipoMovimiento().hasMedioPago()) {
+                        movimientoEdit.setMedioPago(
+                                medioPagoList.get(medioPago.getSelectedItemPosition() - 1));
+                    }
+                    movimientoDAO.insert(movimientoEdit);
+                }
+                if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
+                    Deudor deudor = deudorDAO.findById(movimientoEdit.getDeudor().getId());
+                    Integer total_deudas = deudor.getTotalDeudas();
+                    if (movimientoEdit.getTipoMovimiento().getAccion().equals(ACCION_SUMAR)) {
+                        // ACCIÓN SUMAR: Suma al saldo propio pero debe restar al deudor
+                        total_deudas -= movimientoEdit.getValor();
+                    } else if (movimientoEdit.getTipoMovimiento().getAccion()
+                            .equals(ACCION_RESTAR)) {
+                        // ACCIÓN RESTAR: Resta al saldo propio pero debe sumar al deudor
+                        total_deudas += movimientoEdit.getValor();
+                    }
+                    deudor.setTotalDeudas(total_deudas);
+                    deudorDAO.update(deudor);
+                }
+            } catch (Exception e) {
+                mostrarMensaje(e.getMessage());
+            }
+            mostrarMensaje(getString(R.string.guardadoExitoso));
+            atras();
+        }
     }
 
     private void mostrarMensaje(String mensaje) {

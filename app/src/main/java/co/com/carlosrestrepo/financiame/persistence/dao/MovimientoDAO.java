@@ -4,17 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.model.Deudor;
+import co.com.carlosrestrepo.financiame.model.MedioPago;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
 import co.com.carlosrestrepo.financiame.model.TipoMovimiento;
 import co.com.carlosrestrepo.financiame.persistence.DriverSQLite;
 import co.com.carlosrestrepo.financiame.persistence.PersistenceConfiguration;
 import co.com.carlosrestrepo.financiame.persistence.exception.FinanciaMeException;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  * Clase encargada del acceso a datos para la tabla tbl_movimiento
@@ -23,8 +23,6 @@ import co.com.carlosrestrepo.financiame.persistence.exception.FinanciaMeExceptio
  * @created Septiembre 16 de 2015
  */
 public class MovimientoDAO extends DriverSQLite {
-
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public MovimientoDAO(Context context) {
         super(context);
@@ -41,11 +39,13 @@ public class MovimientoDAO extends DriverSQLite {
 
             ContentValues cv = new ContentValues();
             cv.put("id_tipo_movimiento", movimiento.getTipoMovimiento().getId());
-            cv.put("fecha", sdf.format(movimiento.getFecha()));
+            cv.put("fecha", FinanciaMeConfiguration.sdf.format(movimiento.getFecha()));
             cv.put("valor", movimiento.getValor().intValue());
             cv.put("descripcion", movimiento.getDescripcion());
             if (movimiento.getDeudor() != null)
                 cv.put("id_deudor", movimiento.getDeudor().getId());
+            if (movimiento.getMedioPago() != null)
+                cv.put("id_medio_pago", movimiento.getMedioPago().getId());
 
             sqLiteDatabase.insert(PersistenceConfiguration.MOVIMIENTO_TABLE, null, cv);
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class MovimientoDAO extends DriverSQLite {
 
             Movimiento movimiento = null;
             String[] campos = new String[]{ "id", "id_tipo_movimiento", "fecha", "valor",
-                    "descripcion", "id_deudor" };
+                    "descripcion", "id_deudor", "id_medio_pago" };
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
 
@@ -79,10 +79,11 @@ public class MovimientoDAO extends DriverSQLite {
                     movimiento = new Movimiento();
                     movimiento.setId(cursor.getLong(0));
                     movimiento.setTipoMovimiento(new TipoMovimiento(cursor.getLong(1)));
-                    movimiento.setFecha(sdf.parse(cursor.getString(2)));
+                    movimiento.setFecha(FinanciaMeConfiguration.sdf.parse(cursor.getString(2)));
                     movimiento.setValor(Integer.valueOf(cursor.getInt(3)));
                     movimiento.setDescripcion(cursor.getString(4));
                     movimiento.setDeudor(new Deudor(cursor.getLong(5)));
+                    movimiento.setMedioPago(new MedioPago(cursor.getLong(6)));
                 }
             }
             return movimiento;
@@ -105,7 +106,7 @@ public class MovimientoDAO extends DriverSQLite {
 
             List<Movimiento> movimientoList = null;
             String[] campos = new String[]{ "id", "id_tipo_movimiento", "fecha", "valor",
-                    "descripcion", "id_deudor" };
+                    "descripcion", "id_deudor", "id_medio_pago" };
 
             Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
                     campos, null, null, null, null, null);
@@ -117,10 +118,11 @@ public class MovimientoDAO extends DriverSQLite {
                     movimiento = new Movimiento();
                     movimiento.setId(cursor.getLong(0));
                     movimiento.setTipoMovimiento(new TipoMovimiento(cursor.getLong(1)));
-                    movimiento.setFecha(sdf.parse(cursor.getString(2)));
+                    movimiento.setFecha(FinanciaMeConfiguration.sdf.parse(cursor.getString(2)));
                     movimiento.setValor(Integer.valueOf(cursor.getInt(3)));
                     movimiento.setDescripcion(cursor.getString(4));
                     movimiento.setDeudor(new Deudor(cursor.getLong(5)));
+                    movimiento.setMedioPago(new MedioPago(cursor.getLong(6)));
                     movimientoList.add(movimiento);
                 } while(cursor.moveToNext());
             }
@@ -144,11 +146,13 @@ public class MovimientoDAO extends DriverSQLite {
 
             ContentValues cv = new ContentValues();
             cv.put("id_tipo_movimiento", movimiento.getTipoMovimiento().getId());
-            cv.put("fecha", sdf.format(movimiento.getFecha()));
+            cv.put("fecha", FinanciaMeConfiguration.sdf.format(movimiento.getFecha()));
             cv.put("valor", movimiento.getValor().intValue());
             cv.put("descripcion", movimiento.getDescripcion());
             if (movimiento.getDeudor() != null)
                 cv.put("id_deudor", movimiento.getDeudor().getId());
+            if (movimiento.getMedioPago() != null)
+                cv.put("id_medio_pago", movimiento.getMedioPago().getId());
 
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(movimiento.getId()) };

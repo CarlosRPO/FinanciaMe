@@ -1,5 +1,7 @@
 package co.com.carlosrestrepo.financiame.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.model.Deudor;
 import co.com.carlosrestrepo.financiame.persistence.dao.DeudorDAO;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  *
@@ -56,7 +58,7 @@ public class InfoDeudorFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.menu_info_options, menu);
+        inflater.inflate(R.menu.menu_info_options_deudor, menu);
     }
 
     @Override
@@ -68,26 +70,11 @@ public class InfoDeudorFragment extends Fragment {
             case R.id.action_back:
                 atras();
                 return true;
+            case R.id.action_call:
+                llamarDeudor();
+                return true;
             case R.id.action_save:
-                if (validarInfo()) {
-                    DeudorDAO deudorDAO = new DeudorDAO(getContext());
-                    try {
-                        if (deudorEdit != null) {
-                            deudorEdit.setNombre(nombre.getText().toString());
-                            deudorEdit.setTelefono(telefono.getText().toString());
-                            deudorDAO.update(deudorEdit);
-                        } else {
-                            deudorEdit = new Deudor();
-                            deudorEdit.setNombre(nombre.getText().toString());
-                            deudorEdit.setTelefono(telefono.getText().toString());
-                            deudorDAO.insert(deudorEdit);
-                        }
-                    } catch (Exception e) {
-                        mostrarMensaje(e.getMessage());
-                    }
-                    mostrarMensaje(getString(R.string.guardadoExitoso));
-                    atras();
-                }
+                guardarDeudor();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -96,8 +83,8 @@ public class InfoDeudorFragment extends Fragment {
     private void cargarDeudor() {
         nombre.setText(deudorEdit.getNombre());
         telefono.setText(deudorEdit.getTelefono());
-        totalDeudas.setText(getString(R.string.totalDeudas) + " " +
-                String.valueOf(deudorEdit.getTotalDeudas().intValue()));
+        totalDeudas.setText(getString(R.string.totalDeudas) + " " + "$" +
+                FinanciaMeConfiguration.df.format((long) deudorEdit.getTotalDeudas().intValue()));
     }
 
     private boolean validarInfo() {
@@ -111,6 +98,28 @@ public class InfoDeudorFragment extends Fragment {
         return true;
     }
 
+    private void guardarDeudor() {
+        if (validarInfo()) {
+            DeudorDAO deudorDAO = new DeudorDAO(getContext());
+            try {
+                if (deudorEdit != null) {
+                    deudorEdit.setNombre(nombre.getText().toString());
+                    deudorEdit.setTelefono(telefono.getText().toString());
+                    deudorDAO.update(deudorEdit);
+                } else {
+                    deudorEdit = new Deudor();
+                    deudorEdit.setNombre(nombre.getText().toString());
+                    deudorEdit.setTelefono(telefono.getText().toString());
+                    deudorDAO.insert(deudorEdit);
+                }
+            } catch (Exception e) {
+                mostrarMensaje(e.getMessage());
+            }
+            mostrarMensaje(getString(R.string.guardadoExitoso));
+            atras();
+        }
+    }
+
     private void mostrarMensaje(String mensaje) {
         Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
     }
@@ -121,5 +130,15 @@ public class InfoDeudorFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new DeudorFragment())
                 .commit();
+    }
+
+    private void llamarDeudor() {
+        if (telefono.getText() != null && !telefono.getText().toString().isEmpty()) {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:" + telefono.getText().toString()));
+            startActivity(intent);
+        } else {
+            mostrarMensaje(getString(R.string.infoTipoMovimientoTelefono));
+        }
     }
 }

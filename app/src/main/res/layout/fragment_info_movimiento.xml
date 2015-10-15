@@ -61,6 +61,14 @@
             android:hint="@string/descripcionTitle"
             android:textSize="18sp"/>
 
+        <!-- MEDIO DE PAGO -->
+        <Spinner
+            android:id="@+id/medioPagoMovimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:textSize="18sp"/>
+
         <!-- DEUDOR -->
         <Spinner
             android:id="@+id/deudorMovimiento"

@@ -26,9 +26,9 @@ public class PersistenceConfiguration {
     public static final String TIPO_MOVIMIENTO_TABLE = "tbl_tipo_movimiento";
 
     /**
-     * Tabla tbl_movimiento
+     * Tabla tbl_medio_pago
      */
-    public static final String MOVIMIENTO_TABLE = "tbl_movimiento";
+    public static final String MEDIO_PAGO_TABLE = "tbl_medio_pago";
 
     /**
      * Tabla tbl_deudor
@@ -36,9 +36,9 @@ public class PersistenceConfiguration {
     public static final String DEUDOR_TABLE = "tbl_deudor";
 
     /**
-     * Tabla tbl_movimiento_deudor
+     * Tabla tbl_movimiento
      */
-    public static final String MOVIMIENTO_DEUDOR_TABLE = "tbl_movimiento_deudor";
+    public static final String MOVIMIENTO_TABLE = "tbl_movimiento";
 
     /**
      * Sentencias de creación de tablas
@@ -48,14 +48,21 @@ public class PersistenceConfiguration {
         {
             add("create table if not exists tbl_tipo_movimiento ("
                     + "id integer primary key autoincrement, nombre text not null, "
-                    + "requiere_deudor integer not null default 0, color text not null);");
+                    + "requiere_deudor integer not null default 0, "
+                    + "requiere_medio_pago integer not null default 0, color text not null, "
+                    + "accion text not null)");
+            add("create table if not exists tbl_medio_pago (id integer primary key autoincrement, "
+                    + "nombre text not null, interes real)");
             add("create table if not exists tbl_deudor (id integer primary key autoincrement, "
-                    + "nombre text not null, telefono text not null, total_deudas integer not null default 0);");
+                    + "nombre text not null, telefono text not null, "
+                    + "total_deudas integer not null default 0)");
             add("create table if not exists tbl_movimiento (id integer primary key autoincrement, "
-                    + "id_tipo_movimiento integer not null, fecha text not null, valor integer not null, "
-                    + "descripcion text not null, id_deudor integer, "
+                    + "id_tipo_movimiento integer not null, id_medio_pago integer, "
+                    + "id_deudor integer, fecha text not null, valor integer not null, "
+                    + "descripcion text not null, "
                     + "foreign key(id_tipo_movimiento) references tbl_tipo_movimiento(id),"
-                    + "foreign key(id_deudor) references tbl_deudor(id));");
+                    + "foreign key(id_medio_pago) references tbl_medio_pago(id),"
+                    + "foreign key(id_deudor) references tbl_deudor(id))");
         }
     };
 }

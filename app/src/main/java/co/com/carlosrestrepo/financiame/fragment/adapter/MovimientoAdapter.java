@@ -9,12 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import co.com.carlosrestrepo.financiame.R;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
+import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
  * Clase que se encarga de adaptar y mostrar la lista de Movimientos
@@ -25,9 +24,6 @@ public class MovimientoAdapter extends ArrayAdapter<Movimiento> {
 
     private Context context;
     private List<Movimiento> movimientoList;
-
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    private DecimalFormat df = new DecimalFormat("#,###.##");
 
     public MovimientoAdapter(Context context, List<Movimiento> objects) {
         super(context, R.layout.row_movimiento, objects);
@@ -53,10 +49,11 @@ public class MovimientoAdapter extends ArrayAdapter<Movimiento> {
         descripcion.setText(movimiento.getDescripcion());
 
         TextView valor = (TextView) row.findViewById(R.id.lblValor);
-        valor.setText("$" + df.format((long) movimiento.getValor().intValue()));
+        valor.setText("$" +
+                FinanciaMeConfiguration.df.format((long) movimiento.getValor().intValue()));
 
         TextView fecha = (TextView) row.findViewById(R.id.lblFecha);
-        fecha.setText(sdf.format(movimiento.getFecha()));
+        fecha.setText(FinanciaMeConfiguration.sdf.format(movimiento.getFecha()));
 
         return row;
     }

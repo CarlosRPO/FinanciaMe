@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private ListView ndList;
 
-    private final int OPTION_MOVIMIENTOS = 0;
-    private final int OPTION_PRESTAMOS = 1;
+    private final int OPTION_TIPO_MOVIMIENTO = 0;
+    private final int OPTION_MEDIO_PAGO = 1;
     private final int OPTION_DEUDORES = 2;
-    private final int OPTION_TIPO_MOVIMIENTO = 3;
+    private final int OPTION_MOVIMIENTOS = 3;
+    private final int OPTION_PRESTAMOS = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +62,20 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
 
                 switch (pos) {
+                    case OPTION_TIPO_MOVIMIENTO:
+                        fragment = new TipoMovimientoFragment();
+                        break;
+                    case OPTION_MEDIO_PAGO:
+                        fragment = new MedioPagoFragment();
+                        break;
+                    case OPTION_DEUDORES:
+                        fragment = new DeudorFragment();
+                        break;
                     case OPTION_MOVIMIENTOS:
                         fragment = new MovimientoFragment();
                         break;
                     case OPTION_PRESTAMOS:
                         fragment = new PrestamoFragment();
-                        break;
-                    case OPTION_DEUDORES:
-                        fragment = new DeudorFragment();
-                        break;
-                    case OPTION_TIPO_MOVIMIENTO:
-                        fragment = new TipoMovimientoFragment();
                         break;
                 }
 
