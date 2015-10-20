@@ -6,6 +6,7 @@
     <string name="openDrawer">Menu abierto</string>
     <string name="closeDrawer">Menu cerrado</string>
 
+    <string name="optionHome">@string/app_name</string>
     <string name="optionTipoMovimiento">Tipos de Movimiento</string>
     <string name="optionMedioPago">Medios de Pago</string>
     <string name="optionDeudores">Deudores</string>

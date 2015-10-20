@@ -312,6 +312,7 @@
     <string name="nombreTitle">Nombre</string>
     <string name="openDrawer">Menu abierto</string>
     <string name="optionDeudores">Deudores</string>
+    <string name="optionHome">@string/app_name</string>
     <string name="optionMedioPago">Medios de Pago</string>
     <string name="optionMovimientos">Movimientos</string>
     <string name="optionPrestamos">Préstamos</string>

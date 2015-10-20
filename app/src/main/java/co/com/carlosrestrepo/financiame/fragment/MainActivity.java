@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private ListView ndList;
 
-    private final int OPTION_TIPO_MOVIMIENTO = 0;
-    private final int OPTION_MEDIO_PAGO = 1;
-    private final int OPTION_DEUDORES = 2;
-    private final int OPTION_MOVIMIENTOS = 3;
-    private final int OPTION_PRESTAMOS = 4;
+    private final int OPTION_HOME = 0;
+    private final int OPTION_TIPO_MOVIMIENTO = 1;
+    private final int OPTION_MEDIO_PAGO = 2;
+    private final int OPTION_DEUDORES = 3;
+    private final int OPTION_MOVIMIENTOS = 4;
+    private final int OPTION_PRESTAMOS = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
 
                 switch (pos) {
+                    case OPTION_HOME:
+                        fragment = new HomeFragment();
+                        break;
                     case OPTION_TIPO_MOVIMIENTO:
                         fragment = new TipoMovimientoFragment();
                         break;
@@ -116,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
         //Botón de apertura de DrawerList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new HomeFragment())
+                .commit();
     }
 
     @Override
