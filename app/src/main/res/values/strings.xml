@@ -27,6 +27,7 @@
     <string name="descripcionTitle">Descripción</string>
     <string name="requiereMedioPagoTitle">Requiere Medio de Pago</string>
     <string name="requiereDeudorTitle">Requiere Deudor</string>
+    <string name="requiereConsultaSaldoTitle">Requiere Consulta de Saldo</string>
     <string name="interesTitle">Interés</string>
     <string name="totalDeudas">Total deudas:</string>
     <string name="color">Color:</string>
@@ -54,5 +55,8 @@
     <string name="medioPagoRequerido">Debe seleccionar un Medio de Pago</string>
 
     <string name="aceptar">Aceptar</string>
+
+    <string name="saldoTitle">Saldo total</string>
+    <string name="prestamosTitle">Total préstamos</string>
 
 </resources>

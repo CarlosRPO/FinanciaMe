@@ -39,6 +39,11 @@ public class TipoMovimiento implements Serializable {
     private boolean deudor;
 
     /**
+     * Indica si el tipo de movimiento requiere consulta de saldo
+     */
+    private boolean consultaSaldo;
+
+    /**
      * Indica el color que identifica el tipo de movimiento
      */
     private String color;
@@ -110,6 +115,22 @@ public class TipoMovimiento implements Serializable {
      */
     public void setDeudor(boolean deudor) {
         this.deudor = deudor;
+    }
+
+    /**
+     * Método que se encarga de verificar si el tipo de movimiento requiere consulta de saldo
+     * @return consultaSaldo
+     */
+    public boolean hasConsultaSaldo() {
+        return consultaSaldo;
+    }
+
+    /**
+     * Método que se encarga de indicar si el tipo de movimiento requeriere o no consulta de saldo
+     * @param consultaSaldo
+     */
+    public void setConsultaSaldo(boolean consultaSaldo) {
+        this.consultaSaldo = consultaSaldo;
     }
 
     /**

@@ -37,6 +37,14 @@
             android:text="@string/requiereDeudorTitle"
             android:textSize="18sp" />
 
+        <!-- CONSULTA DE SALDO -->
+        <CheckBox
+            android:id="@+id/consultaSaldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/requiereConsultaSaldoTitle"
+            android:textSize="18sp" />
+
         <!-- ACCIÓN (SUMAR O RESTAR) -->
         <Spinner
             android:id="@+id/accionTipoMovimiento"

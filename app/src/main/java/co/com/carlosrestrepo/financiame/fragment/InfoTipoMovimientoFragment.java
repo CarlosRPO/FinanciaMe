@@ -36,6 +36,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
     private EditText nombre;
     private CheckBox requiereDeudor;
     private CheckBox requiereMedioPago;
+    private CheckBox requiereConsultaSaldo;
     private TextView lblColor;
     private ImageView imgColor;
     private Spinner accion;
@@ -59,6 +60,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
         nombre = (EditText) view.findViewById(R.id.nombreTipoMovimiento);
         requiereDeudor = (CheckBox) view.findViewById(R.id.requiereDeudor);
         requiereMedioPago = (CheckBox) view.findViewById(R.id.requiereMedioPago);
+        requiereConsultaSaldo = (CheckBox) view.findViewById(R.id.consultaSaldo);
         lblColor = (TextView) view.findViewById(R.id.lblColor);
         imgColor = (ImageView) view.findViewById(R.id.imgColor);
         accion = (Spinner) view.findViewById(R.id.accionTipoMovimiento);
@@ -147,6 +149,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
         nombre.setText(tipoMovimientoEdit.getNombre());
         requiereDeudor.setChecked(tipoMovimientoEdit.hasDeudor());
         requiereMedioPago.setChecked(tipoMovimientoEdit.hasMedioPago());
+        requiereConsultaSaldo.setChecked(tipoMovimientoEdit.hasConsultaSaldo());
         int color = Integer.parseInt(tipoMovimientoEdit.getColor());
         imgColor.setBackgroundColor(color);
         selectedColorRGB = color;
@@ -174,6 +177,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
                     tipoMovimientoEdit.setNombre(nombre.getText().toString());
                     tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
                     tipoMovimientoEdit.setMedioPago(requiereMedioPago.isChecked());
+                    tipoMovimientoEdit.setConsultaSaldo(requiereConsultaSaldo.isChecked());
                     tipoMovimientoEdit.setColor(
                             selectedColorRGB != 0 ?
                                     String.valueOf(selectedColorRGB) :
@@ -188,6 +192,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
                     tipoMovimientoEdit.setNombre(nombre.getText().toString());
                     tipoMovimientoEdit.setDeudor(requiereDeudor.isChecked());
                     tipoMovimientoEdit.setMedioPago(requiereMedioPago.isChecked());
+                    tipoMovimientoEdit.setConsultaSaldo(requiereConsultaSaldo.isChecked());
                     tipoMovimientoEdit.setColor(
                             selectedColorRGB != 0 ?
                                     String.valueOf(selectedColorRGB) :

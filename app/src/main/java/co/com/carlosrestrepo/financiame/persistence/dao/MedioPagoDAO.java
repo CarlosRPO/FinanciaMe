@@ -52,6 +52,7 @@ public class MedioPagoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public MedioPago findById(long id) throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -60,7 +61,7 @@ public class MedioPagoDAO extends DriverSQLite {
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.MEDIO_PAGO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.MEDIO_PAGO_TABLE,
                     campos, filtro, valorFiltro, null, null, null);
 
             if (cursor.getCount() > 0) {
@@ -76,6 +77,7 @@ public class MedioPagoDAO extends DriverSQLite {
             throw new FinanciaMeException("Ocurrió un error consultando el Medio de Pago (Id: "
                     + String.valueOf(id) + ")");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -86,13 +88,14 @@ public class MedioPagoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public List<MedioPago> getAll() throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
             List<MedioPago> medioPagoList = null;
             String[] campos = new String[]{ "id", "nombre", "interes" };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.MEDIO_PAGO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.MEDIO_PAGO_TABLE,
                     campos, null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
@@ -111,6 +114,7 @@ public class MedioPagoDAO extends DriverSQLite {
             throw new FinanciaMeException(
                     "Ocurrió un error consultando todos los Medios de Pago");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }

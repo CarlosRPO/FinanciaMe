@@ -53,6 +53,7 @@ public class DeudorDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public Deudor findById(long id) throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -61,7 +62,7 @@ public class DeudorDAO extends DriverSQLite {
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
                     campos, filtro, valorFiltro, null, null, null);
 
             if (cursor.getCount() > 0) {
@@ -78,6 +79,7 @@ public class DeudorDAO extends DriverSQLite {
             throw new FinanciaMeException("Ocurrió un error consultando el Deudor (Id: "
                     + String.valueOf(id) + ")");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -88,13 +90,14 @@ public class DeudorDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public List<Deudor> getAll() throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
             List<Deudor> deudorList = null;
             String[] campos = new String[]{ "id", "nombre", "telefono", "total_deudas" };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
                     campos, null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
@@ -114,6 +117,7 @@ public class DeudorDAO extends DriverSQLite {
             throw new FinanciaMeException(
                     "Ocurrió un error consultando todos los Deudores");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -124,6 +128,7 @@ public class DeudorDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public List<Deudor> getAllPrestamos() throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -133,7 +138,7 @@ public class DeudorDAO extends DriverSQLite {
             String[] valorFiltro = new String[]{ "0" };
             String orderBy = "total_deudas desc";
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.DEUDOR_TABLE,
                     campos, filtro, valorFiltro, null, null, orderBy);
 
             if (cursor.moveToFirst()) {
@@ -153,6 +158,7 @@ public class DeudorDAO extends DriverSQLite {
             throw new FinanciaMeException(
                     "Ocurrió un error consultando todos los Préstamos de los Deudores");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }

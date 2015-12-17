@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.com.carlosrestrepo.financiame.model.Deudor;
 import co.com.carlosrestrepo.financiame.model.MedioPago;
@@ -62,6 +64,7 @@ public class MovimientoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public Movimiento findById(long id) throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -71,7 +74,7 @@ public class MovimientoDAO extends DriverSQLite {
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
                     campos, filtro, valorFiltro, null, null, null);
 
             if (cursor.getCount() > 0) {
@@ -91,6 +94,7 @@ public class MovimientoDAO extends DriverSQLite {
             throw new FinanciaMeException("Ocurrió un error consultando el Movimiento (Id: "
                     + String.valueOf(id) + ")");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -101,6 +105,7 @@ public class MovimientoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public List<Movimiento> getAll() throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -108,7 +113,7 @@ public class MovimientoDAO extends DriverSQLite {
             String[] campos = new String[]{ "id", "id_tipo_movimiento", "fecha", "valor",
                     "descripcion", "id_deudor", "id_medio_pago" };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
                     campos, null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
@@ -131,6 +136,7 @@ public class MovimientoDAO extends DriverSQLite {
             throw new FinanciaMeException(
                     "Ocurrió un error consultando todos los Movimientos");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -163,6 +169,87 @@ public class MovimientoDAO extends DriverSQLite {
             throw new FinanciaMeException("Ocurrió un error actualizando el Movimiento " +
                     "(Id: " + String.valueOf(movimiento.getId()) + ")");
         } finally {
+            close();
+        }
+    }
+
+    /**
+     * Método que se encarga de consultar el saldo total
+     * @throws FinanciaMeException
+     */
+    public Integer getSaldo() throws FinanciaMeException {
+        Cursor cursor = null;
+        try {
+            openToRead();
+            Integer saldo = null;
+            cursor = sqLiteDatabase.rawQuery(PersistenceConfiguration.QUERY_SALDO, null);
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        saldo = cursor.getInt(0);
+                    } while (cursor.moveToNext());
+                }
+            }
+            return saldo;
+        } catch (Exception e) {
+            throw new FinanciaMeException("Ocurrió un error consultando el saldo");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
+            close();
+        }
+    }
+
+    /**
+     * Método que se encarga de consultar el total de los préstamos
+     * @throws FinanciaMeException
+     */
+    public Integer getSaldoPrestamos() throws FinanciaMeException {
+        Cursor cursor = null;
+        try {
+            openToRead();
+            Integer saldo = null;
+            cursor = sqLiteDatabase.rawQuery(PersistenceConfiguration.QUERY_SALDO_PRESTAMOS, null);
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        saldo = cursor.getInt(0);
+                    } while (cursor.moveToNext());
+                }
+            }
+            return saldo;
+        } catch (Exception e) {
+            throw new FinanciaMeException(
+                    "Ocurrió un error consultando el saldo total de préstamos");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
+            close();
+        }
+    }
+
+    /**
+     * Método que se encarga de consultar el saldo de los Tipos de Movimiento marcados para
+     * consulta de saldo
+     * @throws FinanciaMeException
+     */
+    public Map<String, Integer> getSaldosMarcados() throws FinanciaMeException {
+        Cursor cursor = null;
+        try {
+            openToRead();
+            Map<String, Integer> saldos = new HashMap<String, Integer>();
+            cursor = sqLiteDatabase.rawQuery(PersistenceConfiguration.QUERY_SALDOS_MARCADOS, null);
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        saldos.put(cursor.getString(0), cursor.getInt(1));
+                    } while (cursor.moveToNext());
+                }
+            }
+            return saldos;
+        } catch (Exception e) {
+            throw new FinanciaMeException(
+                    "Ocurrió un error consultando los saldos marcados");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }

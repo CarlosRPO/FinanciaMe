@@ -39,6 +39,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             cv.put("requiere_medio_pago", tipoMovimiento.hasMedioPago() ? 1 : 0);
             cv.put("color", tipoMovimiento.getColor());
             cv.put("accion", tipoMovimiento.getAccion());
+            cv.put("consulta_saldo", tipoMovimiento.hasConsultaSaldo() ? 1 : 0);
 
             sqLiteDatabase.insert(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE, null, cv);
         } catch (Exception e) {
@@ -55,6 +56,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public TipoMovimiento findById(long id) throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -65,7 +67,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
                     campos, filtro, valorFiltro, null, null, null);
 
             if (cursor.getCount() > 0) {
@@ -84,6 +86,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             throw new FinanciaMeException("Ocurrió un error consultando el Tipo de Movimiento (Id: "
                     + String.valueOf(id) + ")");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -94,6 +97,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
      * @throws FinanciaMeException
      */
     public List<TipoMovimiento> getAll() throws FinanciaMeException {
+        Cursor cursor = null;
         try {
             openToRead();
 
@@ -102,7 +106,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
                     "id", "nombre", "requiere_deudor", "requiere_medio_pago", "color", "accion"
             };
 
-            Cursor cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
+            cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
                     campos, null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
@@ -124,6 +128,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             throw new FinanciaMeException(
                     "Ocurrió un error consultando todos los Tipos de Movimiento");
         } finally {
+            if (cursor != null && !cursor.isClosed()) cursor.close();
             close();
         }
     }
@@ -143,6 +148,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
             cv.put("requiere_medio_pago", tipoMovimiento.hasMedioPago() ? 1 : 0);
             cv.put("color", tipoMovimiento.getColor());
             cv.put("accion", tipoMovimiento.getAccion());
+            cv.put("consulta_saldo", tipoMovimiento.hasConsultaSaldo() ? 1 : 0);
 
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(tipoMovimiento.getId()) };

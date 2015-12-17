@@ -19,7 +19,7 @@
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="accent">#F57C00</color>
+    <color name="accent">#FDD835</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
@@ -47,7 +47,7 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="fab_color_1">#F57C00</color>
+    <color name="fab_color_1">#FBC02D</color>
     <color name="fab_color_1_muted">#ff8080</color>
     <color name="fab_color_2">#F57C00</color>
     <color name="fab_color_2_muted">#a56ab0</color>
@@ -199,6 +199,7 @@
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin_saldos">5dp</dimen>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
@@ -319,8 +320,11 @@
     <string name="optionTipoMovimiento">Tipos de Movimiento</string>
     <string name="pazSalvoTitle">Tiene deudas</string>
     <string name="prestamoEmpty">No se encontraron Préstamos</string>
+    <string name="prestamosTitle">Total préstamos</string>
+    <string name="requiereConsultaSaldoTitle">Requiere Consulta de Saldo</string>
     <string name="requiereDeudorTitle">Requiere Deudor</string>
     <string name="requiereMedioPagoTitle">Requiere Medio de Pago</string>
+    <string name="saldoTitle">Saldo total</string>
     <!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>

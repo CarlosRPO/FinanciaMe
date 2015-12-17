@@ -5,21 +5,52 @@
     android:layout_height="match_parent"
     tools:context="co.com.carlosrestrepo.financiame.fragment.HomeFragment">
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/saldosLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
+        android:layout_height="wrap_content"
         android:padding="@dimen/activity_vertical_margin">
 
-        <!-- NOMBRE -->
-        <EditText
-            android:id="@+id/nombreTipoMovimiento"
+        <!-- SALDO -->
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/nombreTitle"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:text="@string/saldoTitle" />
+
+            <TextView
+                android:id="@+id/txtSaldo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50sp" />
+
+        </LinearLayout>
+
+        <!-- PRÉSTAMOS -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="@string/prestamosTitle" />
+
+            <TextView
+                android:id="@+id/txtPrestamos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50sp" />
+
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

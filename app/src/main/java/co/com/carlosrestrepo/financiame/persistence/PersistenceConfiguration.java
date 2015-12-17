@@ -50,7 +50,7 @@ public class PersistenceConfiguration {
                     + "id integer primary key autoincrement, nombre text not null, "
                     + "requiere_deudor integer not null default 0, "
                     + "requiere_medio_pago integer not null default 0, color text not null, "
-                    + "accion text not null)");
+                    + "accion text not null, consulta_saldo integer not null)");
             add("create table if not exists tbl_medio_pago (id integer primary key autoincrement, "
                     + "nombre text not null, interes real)");
             add("create table if not exists tbl_deudor (id integer primary key autoincrement, "
@@ -65,4 +65,24 @@ public class PersistenceConfiguration {
                     + "foreign key(id_deudor) references tbl_deudor(id))");
         }
     };
+
+    /**
+     * Sentencias de consultas personalizadas
+     */
+    public static final String QUERY_SALDO = "select (select ifnull(sum(m.valor), 0) " +
+            "from tbl_movimiento m " +
+            "inner join tbl_tipo_movimiento tm on tm.id = m.id_tipo_movimiento " +
+            "where tm.accion = '+') - " +
+            "(select ifnull(sum(m.valor), 0) from tbl_movimiento m " +
+            "inner join tbl_tipo_movimiento tm on tm.id = m.id_tipo_movimiento " +
+            "where tm.accion = '-')";
+
+    public static final String QUERY_SALDO_PRESTAMOS = "select ifnull(sum(total_deudas), 0) " +
+            "from tbl_deudor " +
+            "where total_deudas > 0";
+
+    public static final String QUERY_SALDOS_MARCADOS = "select tm.nombre, sum(m.valor) " +
+            "from tbl_movimiento m " +
+            "inner join tbl_tipo_movimiento tm on m.id_tipo_movimiento = tm.id " +
+            "where tm.consulta_saldo = 1";
 }
