@@ -62,7 +62,8 @@ public class TipoMovimientoDAO extends DriverSQLite {
 
             TipoMovimiento tipoMovimiento = null;
             String[] campos = new String[]{
-                    "id", "nombre", "requiere_deudor", "requiere_medio_pago", "color", "accion"
+                    "id", "nombre", "requiere_deudor", "requiere_medio_pago", "color", "accion",
+                    "consulta_saldo"
             };
             String filtro = "id=?";
             String[] valorFiltro = new String[] { String.valueOf(id) };
@@ -79,6 +80,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
                     tipoMovimiento.setMedioPago(cursor.getInt(3) == 1 ? true : false);
                     tipoMovimiento.setColor(cursor.getString(4));
                     tipoMovimiento.setAccion(cursor.getString(5));
+                    tipoMovimiento.setConsultaSaldo(cursor.getInt(6) == 1 ? true : false);
                 }
             }
             return tipoMovimiento;
@@ -103,7 +105,8 @@ public class TipoMovimientoDAO extends DriverSQLite {
 
             List<TipoMovimiento> tipoMovimientoList = null;
             String[] campos = new String[]{
-                    "id", "nombre", "requiere_deudor", "requiere_medio_pago", "color", "accion"
+                    "id", "nombre", "requiere_deudor", "requiere_medio_pago", "color", "accion",
+                    "consulta_saldo"
             };
 
             cursor = sqLiteDatabase.query(PersistenceConfiguration.TIPO_MOVIMIENTO_TABLE,
@@ -120,6 +123,7 @@ public class TipoMovimientoDAO extends DriverSQLite {
                     tipoMovimiento.setMedioPago(cursor.getInt(3) == 1 ? true : false);
                     tipoMovimiento.setColor(cursor.getString(4));
                     tipoMovimiento.setAccion(cursor.getString(5));
+                    tipoMovimiento.setConsultaSaldo(cursor.getInt(6) == 1 ? true : false);
                     tipoMovimientoList.add(tipoMovimiento);
                 } while(cursor.moveToNext());
             }

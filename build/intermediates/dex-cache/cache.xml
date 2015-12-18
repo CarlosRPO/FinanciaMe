@@ -23,18 +23,18 @@
         <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-98620c511a06c20e34b1e41c75f905b241782eaf.jar" />
     </item>
     <item
-        jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-efda523406b493d9086b8440002707e86236d47a.jar" />
-    </item>
-    <item
         jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
         <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-caa2ecfafc658c40285c5939986de37fa9d53940.jar" />
+    </item>
+    <item
+        jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-efda523406b493d9086b8440002707e86236d47a.jar" />
     </item>
 
 </items>

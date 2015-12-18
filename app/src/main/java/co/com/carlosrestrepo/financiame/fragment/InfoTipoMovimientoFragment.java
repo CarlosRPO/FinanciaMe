@@ -104,6 +104,7 @@ public class InfoTipoMovimientoFragment extends Fragment {
             tipoMovimientoEdit.setNombre(bundle.getString("nombre"));
             tipoMovimientoEdit.setDeudor(bundle.getBoolean("requiere_deudor"));
             tipoMovimientoEdit.setMedioPago(bundle.getBoolean("requiere_medio_pago"));
+            tipoMovimientoEdit.setConsultaSaldo(bundle.getBoolean("requiere_consulta_saldo"));
             tipoMovimientoEdit.setColor(bundle.getString("color"));
             tipoMovimientoEdit.setAccion(bundle.getString("accion"));
             cargarTipoMovimiento();

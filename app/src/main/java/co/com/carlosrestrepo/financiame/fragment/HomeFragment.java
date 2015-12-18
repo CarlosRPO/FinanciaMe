@@ -3,6 +3,7 @@ package co.com.carlosrestrepo.financiame.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class HomeFragment extends Fragment {
         MovimientoDAO mtoDAO = new MovimientoDAO(getContext());
         DecimalFormat df = new DecimalFormat("#,###");
         try {
-            // SALDO
+            // SALDO DE INGRESOS - GASTOS
             Integer saldo = mtoDAO.getSaldo();
             if (saldo == null) saldo = Integer.valueOf("0");
             TextView txtSaldo = (TextView) view.findViewById(R.id.txtSaldo);
@@ -53,7 +54,7 @@ public class HomeFragment extends Fragment {
             if (saldo < 0) {
                 txtSaldo.setTextColor(Color.RED);
             } else {
-                txtSaldo.setTextColor(Color.GREEN);
+                txtSaldo.setTextColor(Color.BLUE);
             }
 
             // PRÉSTAMOS
@@ -67,24 +68,31 @@ public class HomeFragment extends Fragment {
             if (!saldos.isEmpty()) {
                 LinearLayout saldosLayout = (LinearLayout) view.findViewById(R.id.saldosLayout);
                 for (Map.Entry<String, Integer> _saldo : saldos.entrySet()) {
-                    LinearLayout ll = new LinearLayout(getContext());
-                    ll.setOrientation(LinearLayout.VERTICAL);
+                    if (_saldo.getKey() != null && !_saldo.getKey().isEmpty()) {
+                        LinearLayout ll = new LinearLayout(getContext());
+                        ll.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
+                        ll.setOrientation(LinearLayout.VERTICAL);
 
-                    TextView name = new TextView(getContext());
-                    name.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-                    name.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-                    name.setTextSize(18);
-                    name.setText(_saldo.getKey());
+                        AppCompatTextView name = new AppCompatTextView(getContext());
+                        name.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        name.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        name.setTextSize(18);
+                        name.setText(_saldo.getKey());
+                        name.setTextColor(Color.BLACK);
 
-                    TextView value = new TextView(getContext());
-                    name.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-                    name.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-                    name.setTextSize(50);
-                    name.setText(_saldo.getValue());
+                        AppCompatTextView value = new AppCompatTextView(getContext());
+                        value.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        value.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        value.setTextSize(50);
+                        value.setText("$" + df.format(_saldo.getValue()));
+                        value.setTextColor(Color.BLACK);
 
-                    ll.addView(name);
-                    ll.addView(value);
-                    saldosLayout.addView(ll);
+                        ll.addView(name);
+                        ll.addView(value);
+                        saldosLayout.addView(ll);
+                    }
                 }
             }
         } catch (FinanciaMeException e) {

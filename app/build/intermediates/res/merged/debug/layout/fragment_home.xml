@@ -2,10 +2,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="co.com.carlosrestrepo.financiame.fragment.HomeFragment">
 
-    <LinearLayout android:id="@+id/saldosLayout"
+    <LinearLayout
+        android:id="@+id/saldosLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +14,7 @@
 
         <!-- SALDO -->
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -52,5 +53,6 @@
                 android:textSize="50sp" />
 
         </LinearLayout>
+
     </LinearLayout>
 </FrameLayout><!-- From: file:/D:/PROYECTOS/PROPIOS/FinanciaMe/app/src/main/res/layout/fragment_home.xml -->
