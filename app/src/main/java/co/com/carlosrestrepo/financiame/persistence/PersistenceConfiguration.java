@@ -81,8 +81,10 @@ public class PersistenceConfiguration {
             "from tbl_deudor " +
             "where total_deudas > 0";
 
-    public static final String QUERY_SALDOS_MARCADOS = "select tm.nombre, sum(m.valor) " +
+    public static final String QUERY_SALDOS_MARCADOS = "select tm.nombre, sum(m.valor), tm.color " +
             "from tbl_movimiento m " +
             "inner join tbl_tipo_movimiento tm on m.id_tipo_movimiento = tm.id " +
-            "where tm.consulta_saldo = 1";
+            "where tm.consulta_saldo = 1 " +
+            "group by tm.nombre " +
+            "order by sum(m.valor) desc";
 }

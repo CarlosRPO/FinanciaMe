@@ -1611,29 +1611,30 @@ containing a value of this type.
         public static final int circle=0x7f020040;
         public static final int fab_background=0x7f020041;
         public static final int fab_icons=0x7f020042;
-        public static final int green_thumb_default=0x7f020043;
-        public static final int green_thumb_pressed=0x7f020044;
-        public static final int ic_action_back=0x7f020045;
-        public static final int ic_action_call=0x7f020046;
-        public static final int ic_action_event=0x7f020047;
-        public static final int ic_action_new=0x7f020048;
-        public static final int ic_action_save=0x7f020049;
-        public static final int ic_chevron_right=0x7f02004a;
-        public static final int ic_menu=0x7f02004b;
-        public static final int ic_nav_menu=0x7f02004c;
-        public static final int img=0x7f02004d;
-        public static final int materialcolorpicker__blue_progress=0x7f02004e;
-        public static final int materialcolorpicker__blue_thumb_drawable=0x7f02004f;
-        public static final int materialcolorpicker__color_button=0x7f020050;
-        public static final int materialcolorpicker__color_button_16=0x7f020051;
-        public static final int materialcolorpicker__green_progress=0x7f020052;
-        public static final int materialcolorpicker__green_thumb_drawable=0x7f020053;
-        public static final int materialcolorpicker__red_thumb_drawable=0x7f020054;
-        public static final int navheader=0x7f020055;
-        public static final int notification_template_icon_bg=0x7f020059;
-        public static final int red_progress=0x7f020056;
-        public static final int red_thumb_default=0x7f020057;
-        public static final int red_thumb_pressed=0x7f020058;
+        public static final int financiame=0x7f020043;
+        public static final int green_thumb_default=0x7f020044;
+        public static final int green_thumb_pressed=0x7f020045;
+        public static final int ic_action_back=0x7f020046;
+        public static final int ic_action_call=0x7f020047;
+        public static final int ic_action_event=0x7f020048;
+        public static final int ic_action_new=0x7f020049;
+        public static final int ic_action_save=0x7f02004a;
+        public static final int ic_chevron_right=0x7f02004b;
+        public static final int ic_menu=0x7f02004c;
+        public static final int ic_nav_menu=0x7f02004d;
+        public static final int img=0x7f02004e;
+        public static final int materialcolorpicker__blue_progress=0x7f02004f;
+        public static final int materialcolorpicker__blue_thumb_drawable=0x7f020050;
+        public static final int materialcolorpicker__color_button=0x7f020051;
+        public static final int materialcolorpicker__color_button_16=0x7f020052;
+        public static final int materialcolorpicker__green_progress=0x7f020053;
+        public static final int materialcolorpicker__green_thumb_drawable=0x7f020054;
+        public static final int materialcolorpicker__red_thumb_drawable=0x7f020055;
+        public static final int navheader=0x7f020056;
+        public static final int notification_template_icon_bg=0x7f02005a;
+        public static final int red_progress=0x7f020057;
+        public static final int red_thumb_default=0x7f020058;
+        public static final int red_thumb_pressed=0x7f020059;
     }
     public static final class id {
         public static final int accionTipoMovimiento=0x7f0d0066;
@@ -1859,11 +1860,12 @@ containing a value of this type.
     public static final class mipmap {
         public static final int blue_thumb_default=0x7f030000;
         public static final int blue_thumb_pressed=0x7f030001;
-        public static final int green_thumb_default=0x7f030002;
-        public static final int green_thumb_pressed=0x7f030003;
-        public static final int ic_launcher=0x7f030004;
-        public static final int red_thumb_default=0x7f030005;
-        public static final int red_thumb_pressed=0x7f030006;
+        public static final int financiame=0x7f030002;
+        public static final int green_thumb_default=0x7f030003;
+        public static final int green_thumb_pressed=0x7f030004;
+        public static final int ic_launcher=0x7f030005;
+        public static final int red_thumb_default=0x7f030006;
+        public static final int red_thumb_pressed=0x7f030007;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f070000;

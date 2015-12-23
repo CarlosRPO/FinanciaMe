@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.com.carlosrestrepo.financiame.R;
+import co.com.carlosrestrepo.financiame.model.ConsultaSaldo;
 import co.com.carlosrestrepo.financiame.persistence.dao.MovimientoDAO;
 import co.com.carlosrestrepo.financiame.persistence.exception.FinanciaMeException;
 
@@ -54,7 +55,7 @@ public class HomeFragment extends Fragment {
             if (saldo < 0) {
                 txtSaldo.setTextColor(Color.RED);
             } else {
-                txtSaldo.setTextColor(Color.BLUE);
+                txtSaldo.setTextColor(Color.parseColor("#8BC34A"));
             }
 
             // PRÉSTAMOS
@@ -64,30 +65,32 @@ public class HomeFragment extends Fragment {
             txtSaldoPrestamos.setText("$" + df.format(saldoPrestamos));
 
             // TIPOS DE MOVIMIENTO CON CONSULTA DE SALDO
-            Map<String, Integer> saldos = mtoDAO.getSaldosMarcados();
+            List<ConsultaSaldo> saldos = mtoDAO.getSaldosMarcados();
             if (!saldos.isEmpty()) {
                 LinearLayout saldosLayout = (LinearLayout) view.findViewById(R.id.saldosLayout);
-                for (Map.Entry<String, Integer> _saldo : saldos.entrySet()) {
-                    if (_saldo.getKey() != null && !_saldo.getKey().isEmpty()) {
+                for (ConsultaSaldo _saldo : saldos) {
+                    if (_saldo.getNombre() != null && !_saldo.getNombre().isEmpty()) {
                         LinearLayout ll = new LinearLayout(getContext());
                         ll.setLayoutParams(new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT));
                         ll.setOrientation(LinearLayout.VERTICAL);
+                        ll.setPadding(0, 0, 0, 10);
 
                         AppCompatTextView name = new AppCompatTextView(getContext());
-                        name.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-                        name.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        name.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
                         name.setTextSize(18);
-                        name.setText(_saldo.getKey());
-                        name.setTextColor(Color.BLACK);
+                        name.setText(_saldo.getNombre());
 
                         AppCompatTextView value = new AppCompatTextView(getContext());
-                        value.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-                        value.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+                        value.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
                         value.setTextSize(50);
-                        value.setText("$" + df.format(_saldo.getValue()));
-                        value.setTextColor(Color.BLACK);
+                        value.setText("$" + df.format(_saldo.getSaldo()));
+                        value.setTextColor(Integer.parseInt(_saldo.getColor()));
 
                         ll.addView(name);
                         ll.addView(value);

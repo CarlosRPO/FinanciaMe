@@ -5,10 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import co.com.carlosrestrepo.financiame.model.ConsultaSaldo;
 import co.com.carlosrestrepo.financiame.model.Deudor;
 import co.com.carlosrestrepo.financiame.model.MedioPago;
 import co.com.carlosrestrepo.financiame.model.Movimiento;
@@ -231,16 +230,20 @@ public class MovimientoDAO extends DriverSQLite {
      * consulta de saldo
      * @throws FinanciaMeException
      */
-    public Map<String, Integer> getSaldosMarcados() throws FinanciaMeException {
+    public List<ConsultaSaldo> getSaldosMarcados() throws FinanciaMeException {
         Cursor cursor = null;
         try {
             openToRead();
-            Map<String, Integer> saldos = new HashMap<String, Integer>();
+            List<ConsultaSaldo> saldos = new ArrayList<ConsultaSaldo>();
             cursor = sqLiteDatabase.rawQuery(PersistenceConfiguration.QUERY_SALDOS_MARCADOS, null);
             if (cursor.getCount() > 0) {
                 if (cursor.moveToFirst()) {
                     do {
-                        saldos.put(cursor.getString(0), cursor.getInt(1));
+                        ConsultaSaldo consultaSaldo = new ConsultaSaldo();
+                        consultaSaldo.setNombre(cursor.getString(0));
+                        consultaSaldo.setSaldo(cursor.getInt(1));
+                        consultaSaldo.setColor(cursor.getString(2));
+                        saldos.add(consultaSaldo);
                     } while (cursor.moveToNext());
                 }
             }
