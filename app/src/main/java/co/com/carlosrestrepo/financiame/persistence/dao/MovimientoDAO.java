@@ -111,9 +111,10 @@ public class MovimientoDAO extends DriverSQLite {
             List<Movimiento> movimientoList = null;
             String[] campos = new String[]{ "id", "id_tipo_movimiento", "fecha", "valor",
                     "descripcion", "id_deudor", "id_medio_pago" };
+            String orderBy = "id desc";
 
             cursor = sqLiteDatabase.query(PersistenceConfiguration.MOVIMIENTO_TABLE,
-                    campos, null, null, null, null, null);
+                    campos, null, null, null, null, orderBy);
 
             if (cursor.moveToFirst()) {
                 movimientoList = new ArrayList<Movimiento>();
@@ -256,4 +257,16 @@ public class MovimientoDAO extends DriverSQLite {
             close();
         }
     }
+
+//    public void updateList() throws FinanciaMeException {
+//        try {
+//            openToWrite();
+//            String sql = "update tbl_movimiento set fecha = substr(fecha,7,4) || '-' || substr(fecha,4,2) || '-' || substr(fecha,1,2)";
+//            sqLiteDatabase.execSQL(sql);
+//        } catch (Exception e) {
+//            throw new FinanciaMeException("Ocurrió un error actualizando los movimientos");
+//        } finally {
+//            close();
+//        }
+//    }
 }

@@ -43,7 +43,7 @@ public class DatePickerFragment extends DialogFragment
         String mes = month < 10 ? "0" + (month) : String.valueOf(month);
         String dia = String.valueOf(day).length() == 1 ? "0" + day : String.valueOf(day);
         InfoMovimientoFragment imf = (InfoMovimientoFragment) getFragmentManager().getFragments().get(0);
-        imf.onFinishSelectDateDialog(dia + "/" + mes + "/" + year);
+        imf.onFinishSelectDateDialog(year + "-" + mes + "-" + dia);
         this.dismiss();
     }
 }

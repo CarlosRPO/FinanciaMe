@@ -279,7 +279,7 @@
     <string name="app_name">FinanciaMe</string>
     <string name="closeDrawer">Menu cerrado</string>
     <string name="color">Color:</string>
-    <string name="dateFormat">dd/mm/aaaa</string>
+    <string name="dateFormat">aaaa-mm-dd</string>
     <string name="descripcionRequerida">Debe ingresar una descripción</string>
     <string name="descripcionTitle">Descripción</string>
     <string name="deudorEmpty">No se encontraron Deudores</string>

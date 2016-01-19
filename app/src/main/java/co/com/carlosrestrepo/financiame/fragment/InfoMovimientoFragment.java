@@ -254,7 +254,7 @@ public class InfoMovimientoFragment extends Fragment implements
             descripcion.setText(movimientoEdit.getDescripcion());
             if (movimientoEdit.getDeudor() != null &&
                     movimientoEdit.getDeudor().getId() != 0) {
-                Deudor _deudor = deudorList.get(deudor.getSelectedItemPosition() - 1);
+                Deudor _deudor = deudorDAO.findById(movimientoEdit.getDeudor().getId());
                 deudor.setSelection(deudorList.indexOf(_deudor) + 1);
                 deudor.setVisibility(View.VISIBLE);
             } else {

@@ -10,6 +10,6 @@ import java.text.SimpleDateFormat;
  */
 public class FinanciaMeConfiguration {
 
-    public static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     public static final DecimalFormat df = new DecimalFormat("#,###.##");
 }

@@ -61,6 +61,7 @@ public class MovimientoFragment extends Fragment implements AdapterView.OnItemCl
         MovimientoDAO movimientoDAO = new MovimientoDAO(getContext());
         TipoMovimientoDAO tmDAO = new TipoMovimientoDAO(getContext());
         try {
+//            movimientoDAO.updateList();
             movimientoList = movimientoDAO.getAll();
 
             if (movimientoList != null && !movimientoList.isEmpty()) {

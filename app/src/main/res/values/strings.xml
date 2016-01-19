@@ -22,7 +22,7 @@
     <string name="nombreTitle">Nombre</string>
     <string name="telefonoTitle">Teléfono</string>
     <string name="pazSalvoTitle">Tiene deudas</string>
-    <string name="dateFormat">dd/mm/aaaa</string>
+    <string name="dateFormat">aaaa-mm-dd</string>
     <string name="valorTitle">Valor</string>
     <string name="descripcionTitle">Descripción</string>
     <string name="requiereMedioPagoTitle">Requiere Medio de Pago</string>
