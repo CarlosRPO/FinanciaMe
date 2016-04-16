@@ -2,6 +2,7 @@ package co.com.carlosrestrepo.financiame.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,26 @@ public class MedioPagoFragment extends Fragment implements AdapterView.OnItemCli
         FloatingActionButton actionNew = (FloatingActionButton) view.findViewById(R.id.action_new);
         actionNew.setOnCheckedChangeListener(this);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        atras();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -92,5 +113,13 @@ public class MedioPagoFragment extends Fragment implements AdapterView.OnItemCli
                     .replace(R.id.content_frame, fragment)
                     .commit();
         }
+    }
+
+    private void atras() {
+        onDestroy();
+        onDestroyView();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new HomeFragment())
+                .commit();
     }
 }

@@ -2,20 +2,6 @@
 <items version="2" >
 
     <item
-        jar="D:\ANDROID\SDK\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-3639802ecf76753f96d6c7534c3b1a02923d5e0b.jar" />
-    </item>
-    <item
-        jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.pes.materialcolorpicker\library\1.0.2\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aab7640038c6153ac02d112584b8852a01794262">
-        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-5ba39f237496eaebe6a586eac02852f0342bde23.jar" />
-    </item>
-    <item
         jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -28,6 +14,20 @@
         revision="23.0.1"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
         <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-caa2ecfafc658c40285c5939986de37fa9d53940.jar" />
+    </item>
+    <item
+        jar="D:\ANDROID\SDK\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-3639802ecf76753f96d6c7534c3b1a02923d5e0b.jar" />
+    </item>
+    <item
+        jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.pes.materialcolorpicker\library\1.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aab7640038c6153ac02d112584b8852a01794262">
+        <dex dex="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\pre-dexed\debug\classes-5ba39f237496eaebe6a586eac02852f0342bde23.jar" />
     </item>
     <item
         jar="D:\PROYECTOS\PROPIOS\FinanciaMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"

@@ -430,17 +430,17 @@ public final class R {
 		public static final int blue_thumb_pressed = 0x7f02003f;
 		public static final int green_thumb_default = 0x7f020044;
 		public static final int green_thumb_pressed = 0x7f020045;
-		public static final int materialcolorpicker__blue_progress = 0x7f02004f;
-		public static final int materialcolorpicker__blue_thumb_drawable = 0x7f020050;
-		public static final int materialcolorpicker__color_button = 0x7f020051;
-		public static final int materialcolorpicker__color_button_16 = 0x7f020052;
-		public static final int materialcolorpicker__green_progress = 0x7f020053;
-		public static final int materialcolorpicker__green_thumb_drawable = 0x7f020054;
-		public static final int materialcolorpicker__red_thumb_drawable = 0x7f020055;
-		public static final int notification_template_icon_bg = 0x7f02005a;
-		public static final int red_progress = 0x7f020057;
-		public static final int red_thumb_default = 0x7f020058;
-		public static final int red_thumb_pressed = 0x7f020059;
+		public static final int materialcolorpicker__blue_progress = 0x7f02004e;
+		public static final int materialcolorpicker__blue_thumb_drawable = 0x7f02004f;
+		public static final int materialcolorpicker__color_button = 0x7f020050;
+		public static final int materialcolorpicker__color_button_16 = 0x7f020051;
+		public static final int materialcolorpicker__green_progress = 0x7f020052;
+		public static final int materialcolorpicker__green_thumb_drawable = 0x7f020053;
+		public static final int materialcolorpicker__red_thumb_drawable = 0x7f020054;
+		public static final int notification_template_icon_bg = 0x7f020059;
+		public static final int red_progress = 0x7f020056;
+		public static final int red_thumb_default = 0x7f020057;
+		public static final int red_thumb_pressed = 0x7f020058;
 	}
 	public static final class id {
 		public static final int action0 = 0x7f0d0079;
