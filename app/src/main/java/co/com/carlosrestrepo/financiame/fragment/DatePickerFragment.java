@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.List;
 
 import co.com.carlosrestrepo.financiame.R;
 
@@ -42,8 +43,18 @@ public class DatePickerFragment extends DialogFragment
         month++;
         String mes = month < 10 ? "0" + (month) : String.valueOf(month);
         String dia = String.valueOf(day).length() == 1 ? "0" + day : String.valueOf(day);
-        InfoMovimientoFragment imf = (InfoMovimientoFragment) getFragmentManager().getFragments().get(0);
-        imf.onFinishSelectDateDialog(year + "-" + mes + "-" + dia);
+        List<Fragment> fragmentList = getFragmentManager().getFragments();
+        if (fragmentList != null && !fragmentList.isEmpty()) {
+            InfoMovimientoFragment imf = null;
+            for (Fragment fragment : fragmentList) {
+                if (fragment != null && fragment instanceof InfoMovimientoFragment) {
+                    imf = (InfoMovimientoFragment) fragment;
+                }
+            }
+            if (imf != null) {
+                imf.onFinishSelectDateDialog(year + "-" + mes + "-" + dia);
+            }
+        }
         this.dismiss();
     }
 }

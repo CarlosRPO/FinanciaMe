@@ -32,8 +32,7 @@ import co.com.carlosrestrepo.financiame.persistence.dao.TipoMovimientoDAO;
 import co.com.carlosrestrepo.financiame.util.FinanciaMeConfiguration;
 
 /**
- *
- * @author  Carlos Restrepo
+ * @author Carlos Restrepo
  * @created Septiembre 15 de 2015
  */
 public class InfoMovimientoFragment extends Fragment implements
@@ -169,7 +168,7 @@ public class InfoMovimientoFragment extends Fragment implements
             if (tipoMovimientoList != null && !tipoMovimientoList.isEmpty()) {
                 for (int i = 0; i < tipoMovimientoList.size(); i++) {
                     TipoMovimiento tipoMovimiento = tipoMovimientoList.get(i);
-                    valores[i+1] = tipoMovimiento.getNombre();
+                    valores[i + 1] = tipoMovimiento.getNombre();
                 }
             }
 
@@ -222,7 +221,7 @@ public class InfoMovimientoFragment extends Fragment implements
             if (deudorList != null && !deudorList.isEmpty()) {
                 for (int i = 0; i < deudorList.size(); i++) {
                     Deudor deudor = deudorList.get(i);
-                    valores[i+1] = deudor.getNombre();
+                    valores[i + 1] = deudor.getNombre();
                 }
             }
 
@@ -249,7 +248,7 @@ public class InfoMovimientoFragment extends Fragment implements
             if (medioPagoList != null && !medioPagoList.isEmpty()) {
                 for (int i = 0; i < medioPagoList.size(); i++) {
                     MedioPago medioPago = medioPagoList.get(i);
-                    valores[i+1] = medioPago.getNombre();
+                    valores[i + 1] = medioPago.getNombre();
                 }
             }
 
@@ -319,12 +318,9 @@ public class InfoMovimientoFragment extends Fragment implements
             if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1).hasDeudor()) {
                 Deudor _deudor = deudorList.get(deudor.getSelectedItemPosition() - 1);
                 Integer total_deudas = _deudor.getTotalDeudas();
-                if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1)
-                        .getAccion().equals(ACCION_SUMAR) &&
-                        Integer.parseInt(
-                                valor.getText().toString().replace(".", "")) > total_deudas) {
-                    mostrarMensaje(String.format(
-                            getString(R.string.valorDeudaSuperior), String.valueOf(total_deudas)));
+                if (tipoMovimientoList.get(tipoMovimiento.getSelectedItemPosition() - 1).getAccion().equals(ACCION_SUMAR)
+                        && Integer.parseInt(moneyFormat(valor.getText().toString())) > total_deudas) {
+                    mostrarMensaje(String.format(getString(R.string.valorDeudaSuperior), String.valueOf(total_deudas)));
                     return false;
                 }
             }
@@ -340,6 +336,10 @@ public class InfoMovimientoFragment extends Fragment implements
         return true;
     }
 
+    private String moneyFormat(String value) {
+        return value.replaceAll("[,|.]", "");
+    }
+
     private void guardarMovimiento() {
         if (validarInfo()) {
             MovimientoDAO movimientoDAO = new MovimientoDAO(getContext());
@@ -350,9 +350,7 @@ public class InfoMovimientoFragment extends Fragment implements
                                     tipoMovimiento.getSelectedItemPosition() - 1));
                     movimientoEdit.setFecha(
                             FinanciaMeConfiguration.sdf.parse(fecha.getText().toString()));
-                    movimientoEdit.setValor(
-                            Integer.parseInt(
-                                    valor.getText().toString().replace(".", "")));
+                    movimientoEdit.setValor(Integer.parseInt(moneyFormat(valor.getText().toString())));
                     movimientoEdit.setDescripcion(descripcion.getText().toString());
                     if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
                         movimientoEdit.setDeudor(
@@ -375,8 +373,7 @@ public class InfoMovimientoFragment extends Fragment implements
                     movimientoEdit.setFecha(
                             FinanciaMeConfiguration.sdf.parse(fecha.getText().toString()));
                     movimientoEdit.setValor(
-                            Integer.parseInt(
-                                    valor.getText().toString().replace(".", "")));
+                            Integer.parseInt(moneyFormat(valor.getText().toString())));
                     movimientoEdit.setDescripcion(descripcion.getText().toString());
                     if (movimientoEdit.getTipoMovimiento().hasDeudor()) {
                         movimientoEdit.setDeudor(
